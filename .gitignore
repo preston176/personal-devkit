@@ -1,0 +1,3 @@
+*.backup.json
+tmp
+.DS_Store
