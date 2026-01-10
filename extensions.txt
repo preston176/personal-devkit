@@ -101,13 +101,13 @@ parallelsdesktop.parallels-desktop
 pkief.material-icon-theme
 preston176.flowlens
 prisma.prisma
+quicktype.quicktype
 qwtel.sqlite-viewer
 rebornix.prolog
 redhat.vscode-yaml
 ritwickdey.liveserver
 rodrigovallades.es7-react-js-snippets
 rphlmr.vscode-drizzle-orm
-s-nlf-fh.glassit
 saoudrizwan.claude-dev
 skyran.js-jsx-snippets
 streetsidesoftware.code-spell-checker
