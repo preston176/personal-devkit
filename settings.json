@@ -2,25 +2,25 @@
   "code-runner.runInTerminal": true,
   "editor.formatOnSave": true,
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[python]": {
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
   },
-  "python.defaultInterpreterPath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "python.defaultInterpreterPath": "",
   "editor.inlineSuggest.enabled": true,
   "workbench.editorAssociations": {
-    "*.docx": "default"
+    "*.docx": "default",
   },
   "github.copilot.enable": {
     "plaintext": false,
     "markdown": true,
     "scminput": false,
     "yaml": false,
-    "*": false
+    "*": false,
   },
   "git.autofetch": true,
   "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
@@ -32,27 +32,27 @@
   "liveServer.settings.donotVerifyTags": true,
   "terminal.integrated.autoReplies": {},
   "emmet.syntaxProfiles": {
-    "javascript": "jsx, js"
+    "javascript": "jsx, js",
   },
-  "terminal.integrated.defaultProfile.windows": "Ubuntu-22.04 (WSL)",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
   "glassit.alpha": 255,
   "git.enableSmartCommit": true,
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "vscode.typescript-language-features",
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "vscode.typescript-language-features",
   },
   "editor.codeActionsOnSave": {},
   "workbench.settings.applyToAllProfiles": [
     "editor.fontFamily",
-    "editor.fontLigatures"
+    "editor.fontLigatures",
   ],
   "editor.fontLigatures": true,
   "security.workspace.trust.untrustedFiles": "open",
   "git.openRepositoryInParentFolders": "always",
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+    "javascript": "javascriptreact",
   },
   "github.copilot.editor.enableAutoCompletions": true,
   "files.autoSave": "afterDelay",
@@ -117,7 +117,7 @@
     "erlang": "escript",
     "spwn": "spwn build",
     "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
-    "gleam": "gleam run -m $fileNameWithoutExt"
+    "gleam": "gleam run -m $fileNameWithoutExt",
   },
   "editor.tabCompletion": "onlySnippets",
   "fittencode.inlineCompletion.enable": false,
@@ -131,60 +131,57 @@
     "contributors": true,
     "repositories": false,
     "searchAndCompare": false,
-    "launchpad": true
+    "launchpad": true,
   },
   "code-runner.saveAllFilesBeforeRun": true,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "reactSnippets.settings.importReactOnTop": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",
-      "icon": "terminal-powershell"
+      "icon": "terminal-powershell",
     },
     "Command Prompt": {
-      "path": [
-        "${env:windir}\\Sysnative\\cmd.exe",
-        "${env:windir}\\System32\\cmd.exe"
-      ],
+      "path": "C:\\Windows\\System32\\cmd.exe",
       "args": [],
-      "icon": "terminal-cmd"
     },
     "Git Bash": {
-      "source": "Git Bash"
+      "source": "Git Bash",
+      "icon": "terminal-git-bash",
     },
     "Warp": {
-      "path": "C:\\Program Files\\Warp\\warp.exe"
+      "path": "C:\\Program Files\\Warp\\warp.exe",
     },
     "Ubuntu-22.04 (WSL)": {
       "path": "C:\\Windows\\System32\\wsl.exe",
-      "args": ["-d", "Ubuntu-22.04"]
-    }
+      "args": ["-d", "Ubuntu-22.04"],
+    },
   },
   "git.confirmSync": false,
   "terminal.integrated.profiles.osx": {
     "bash": {
       "path": "bash",
       "args": ["-l"],
-      "icon": "terminal-bash"
+      "icon": "terminal-bash",
     },
     "zsh": {
       "path": "/bin/zsh",
-      "args": ["-l"]
+      "args": ["-l"],
     },
     "fish": {
       "path": "fish",
-      "args": ["-l"]
+      "args": ["-l"],
     },
     "tmux": {
       "path": "tmux",
-      "icon": "terminal-tmux"
+      "icon": "terminal-tmux",
     },
     "pwsh": {
       "path": "pwsh",
-      "icon": "terminal-powershell"
+      "icon": "terminal-powershell",
     },
   },
   "terminal.integrated.defaultProfile.osx": "zsh",
@@ -192,13 +189,16 @@
   "rapidapi.terminalLink.enabled": false,
   "yaml.schemas": {
     "c:\\Users\\USER\\.vscode\\extensions\\continue.continue-1.0.10-win32-x64\\config-yaml-schema.json": [
-      ".continue/**/*.yaml"
-    ]
+      ".continue/**/*.yaml",
+    ],
   },
   "vue.server.hybridMode": "typeScriptPluginOnly",
   "docker.extension.enableComposeLanguageServer": false,
   "chat.instructionsFilesLocations": {
     ".github/instructions": true,
+    ".claude/rules": true,
+    "~/.copilot/instructions": true,
+    "~/.claude/rules": true,
     "C:\\Users\\USER\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
     "C:\\Users\\USER\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true,
     "C:\\Users\\USER\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
@@ -222,7 +222,13 @@
     "/var/folders/0f/qf7g5h_s58d_k53wpntw3nt00000gn/T/postman-folder-post-response.instructions.md": true,
     "/var/folders/0f/qf7g5h_s58d_k53wpntw3nt00000gn/T/postman-folder-pre-request.instructions.md": true,
     "/var/folders/0f/qf7g5h_s58d_k53wpntw3nt00000gn/T/postman-http-request-post-response.instructions.md": true,
-    "/var/folders/0f/qf7g5h_s58d_k53wpntw3nt00000gn/T/postman-http-request-pre-request.instructions.md": true
+    "/var/folders/0f/qf7g5h_s58d_k53wpntw3nt00000gn/T/postman-http-request-pre-request.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-collections-post-response.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-collections-pre-request.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-post-response.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-pre-request.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-post-response.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-pre-request.instructions.md": true
   },
   "terminal.integrated.allowedLinkSchemes": [
     "file",
@@ -231,7 +237,7 @@
     "mailto",
     "vscode",
     "vscode-insiders",
-    "docker-desktop"
+    "docker-desktop",
   ],
   "workbench.iconTheme": "icons",
   "workbench.editor.empty.hint": "hidden",
@@ -245,12 +251,12 @@
     "editor.quickSuggestions": {
       "other": true,
       "comments": false,
-      "strings": true
+      "strings": true,
     },
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.js",
@@ -270,7 +276,7 @@
     "*.sqlite3": "${capture}.${extname}-*",
     "*.db3": "${capture}.${extname}-*",
     "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
+    "*.s3db": "${capture}.${extname}-*",
   },
   "database-client.autoSync": true,
   "parallels-desktop.extension.path": "/Users/app/.parallels-desktop-vscode",
@@ -282,18 +288,25 @@
   "chat.tools.terminal.autoApprove": {
     "bun run dev": {
       "approve": true,
-      "matchCommandLine": true
+      "matchCommandLine": true,
     },
-    "pip3": true
+    "pip3": true,
   },
   "workbench.activityBar.location": "top",
-  "window.commandCenter": false,
   "claudeCode.preferredLocation": "panel",
   "mssql.connectionGroups": [
     {
       "name": "ROOT",
-      "id": "F9D19423-4615-46C5-9CD6-C6300B110FE1"
-    }
+      "id": "F9D19423-4615-46C5-9CD6-C6300B110FE1",
+    },
   ],
-  "github.copilot.nextEditSuggestions.enabled": true
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "editor.minimap.enabled": false,
+  "diffEditor.maxComputationTime": 0,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "update.titleBar": "actionable",
+  "chat.viewSessions.orientation": "stacked",
+  "window.commandCenter": false,
+  "console-ninja.featureSet": "Community",
 }
