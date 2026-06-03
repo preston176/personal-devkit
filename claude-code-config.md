@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-05-19 from `~/.claude/`_
+_Captured 2026-06-04 from `~/.claude/`_
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -9,8 +9,9 @@ _Captured 2026-05-19 from `~/.claude/`_
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
-  "theme": "dark",
-  "skipDangerousModePermissionPrompt": true
+  "effortLevel": "xhigh",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
 }
 ```
 
@@ -130,11 +131,14 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 
 **General dev**
 - `code-structure`
+- `create-task`
 - `drizzle`
+- `fallow`
 - `find-skills`
 - `flutter-development`
 - `godot`
 - `pdf-to-markdown`
+- `shadcn`
 - `web-design-guidelines`
 
 > Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow.
@@ -151,9 +155,9 @@ code-modernization     code-review             code-simplifier
 commit-commands        cwc-makers              example-plugin
 explanatory-output-style  feature-dev          frontend-design
 hookify                learning-output-style    math-olympiad
-mcp-server-dev         playground              plugin-dev
-pr-review-toolkit      ralph-loop              security-guidance
-session-report         skill-creator
+mcp-server-dev         mcp-tunnels              playground
+plugin-dev             pr-review-toolkit        ralph-loop
+security-guidance      session-report           skill-creator
 # Language servers:
 clangd-lsp  csharp-lsp  gopls-lsp  jdtls-lsp  kotlin-lsp  lua-lsp
 php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp

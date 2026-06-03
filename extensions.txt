@@ -1,5 +1,6 @@
 aaron-bond.better-comments
 adpyke.codesnap
+agentlayer.cmux-open-workspace
 alefragnani.project-manager
 alexcvzz.vscode-sqlite
 alfredbirk.tailwind-documentation
@@ -35,16 +36,18 @@ esbenp.prettier-vscode
 expo.vscode-expo-theme
 expo.vscode-expo-tools
 fallenmax.mithril-emmet
+fallow-rs.fallow-vscode
 formulahendry.code-runner
 geequlim.godot-tools
 github.codespaces
-github.copilot-chat
 github.github-vscode-theme
 github.vscode-github-actions
 gruntfuggly.todo-tree
 hbenl.vscode-test-explorer
 humao.rest-client
 huseyn.pretty-oled
+imgildev.vscode-nextjs-generator
+jakebecker.elixir-ls
 jasonnutter.search-node-modules
 jawandarajbir.react-vscode-extension-pack
 johnpapa.vscode-peacock
@@ -61,6 +64,7 @@ mechatroner.rainbow-csv
 mintlify.document
 monish.regexsnippets
 monokai.theme-monokai-pro-vscode
+moonshot-ai.kimi-code
 motoko-lsp-client.motoko-lsp-client
 ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-azurestaticwebapps
@@ -104,9 +108,11 @@ qwtel.sqlite-viewer
 rangav.vscode-thunder-client
 rebornix.prolog
 redhat.vscode-yaml
+ritvyk.heex-html
 ritwickdey.liveserver
 rodrigovallades.es7-react-js-snippets
 saoudrizwan.claude-dev
+saratravi.elixir-formatter
 satyam11.christmas-theme
 skyran.js-jsx-snippets
 streetsidesoftware.code-spell-checker

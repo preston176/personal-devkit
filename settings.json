@@ -16,11 +16,10 @@
     "*.docx": "default",
   },
   "github.copilot.enable": {
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false,
-    "yaml": false,
     "*": false,
+    "plaintext": false,
+    "scminput": false,
+    "yaml": true,
   },
   "git.autofetch": true,
   "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
@@ -309,4 +308,8 @@
   "chat.viewSessions.orientation": "stacked",
   "window.commandCenter": false,
   "console-ninja.featureSet": "Community",
+  "supermaven.enable": {
+    "*": false,
+  },
+  "claudeCode.allowDangerouslySkipPermissions": true,
 }
