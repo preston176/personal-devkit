@@ -117,14 +117,28 @@ These are the skills that operate on Claude Code itself rather than on your code
 
 ## How to add or remove skills on a new machine
 
+This repo gives you two install paths:
+
 ```bash
-# Inside Claude Code:
-/skill find-skills          # search & install via the find-skills workflow
-ls ~/.claude/skills/        # see what's installed
-rm -rf ~/.claude/skills/<name>   # remove one
+# All at once (recommended)
+./scripts/install-skills.sh
+
+# Or selectively, by source
+npx skills add clerk/skills@clerk-nextjs-patterns -g -y   # marketplace
+cp -R claude/skills/godot ~/.claude/skills/                # standalone (in-repo)
 ```
 
-Or copy `~/.claude/skills/` wholesale from one machine to another — they're just folders.
+Find new skills via the `find-skills` skill inside Claude Code, or browse
+[`skills.sh`](https://skills.sh/). Remove one with `rm -rf ~/.claude/skills/<name>`.
+
+### Why two paths?
+
+| Source | Where it lives | How it replicates |
+|---|---|---|
+| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
+| Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
+| Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
+| Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
 
 ---
 

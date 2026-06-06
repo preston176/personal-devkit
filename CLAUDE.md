@@ -27,9 +27,10 @@ If a user pastes it, follow it verbatim.
 
 ```
 vscode/    settings.json, keybindings.json, extensions.txt — overwritten on apply
-claude/    config.md (MCP / skills / rules / plugins ref), skills.md (skill tour)
+claude/    config.md (MCP / skills / rules / plugins ref), skills.md (skill tour),
+           skills/ (5 standalone skill folders bundled in-repo)
 agent/     prompt.md (the dry-run prompt)
-scripts/   install.sh (apply), export.sh (snapshot)
+scripts/   install.sh (VS Code), install-skills.sh (Claude skills), export.sh
 ```
 
 ## When the user says "apply"
@@ -38,15 +39,17 @@ Walk through these in order, confirming after each:
 
 1. Back up existing `settings.json` and `keybindings.json` to `*.backup.json`.
 2. Run `./scripts/install.sh` (settings, keybindings, extensions).
-3. Run `npx ctx7 setup` (installs Context7 MCP with API key + companion
-   skill + rule).
-4. Run the `claude mcp add` lines from `claude/config.md` for any **non-claude.ai**
+3. Run `./scripts/install-skills.sh` (marketplace skills via `npx skills add`,
+   plus copying the 5 standalone skills from `claude/skills/` into
+   `~/.claude/skills/`). Skips `context7-mcp` and `screen-demo` — see the
+   script's footer notes.
+4. Run `npx ctx7 setup` (installs Context7 MCP with API key + companion
+   `context7-mcp` skill + rule).
+5. Run the `claude mcp add` lines from `claude/config.md` for any **non-claude.ai**
    MCP servers (Composio + local stdio: chrome-devtools, playwright,
    terraform, firebase, excalidraw). For Composio, guide the user through
    `/mcp` OAuth. **Do not** add the claude.ai connectors — they ride with
    the Anthropic account.
-5. Optionally copy `~/.claude/skills/` and `~/.claude/CLAUDE.md` from a
-   source machine if the user has one.
 
 Each step has side effects; confirm before each.
 

@@ -16,13 +16,15 @@ My VS Code + Claude Code config, versioned so I can drop it onto a fresh machine
 │
 ├── claude/                  ← everything Claude Code
 │   ├── config.md            ← MCP servers, skills, rules, plugin marketplaces
-│   └── skills.md            ← what every installed skill does
+│   ├── skills.md            ← what every installed skill does
+│   └── skills/              ← 5 standalone skills copied as-is (~60KB)
 │
 ├── agent/                   ← drop-in agent prompts
 │   └── prompt.md            ← the dry-run import prompt to paste into your LLM
 │
 └── scripts/                 ← shell automation
     ├── install.sh           ← restore vscode/ onto a new machine
+    ├── install-skills.sh    ← install Claude Code skills (marketplace + standalone)
     └── export.sh            ← snapshot the live VS Code state back into vscode/
 ```
 
@@ -115,10 +117,11 @@ The same prompt lives in [`agent/prompt.md`](./agent/prompt.md) if you want a pe
 git clone https://github.com/preston176/vscode-setup.git
 cd vscode-setup
 ./scripts/install.sh              # settings, keybindings, extensions
+./scripts/install-skills.sh       # marketplace skills (npx skills add) + standalone
 npx ctx7 setup                    # Context7 MCP + skill + rule (handles API key)
 ```
 
-Then open [`claude/config.md`](./claude/config.md) and run the `claude mcp add` block for any remaining connectors. OAuth into them via `/mcp` inside Claude Code.
+Then open [`claude/config.md`](./claude/config.md) and run the `claude mcp add` block for any remaining non-claude.ai connectors (Composio + local stdio). OAuth into them via `/mcp` inside Claude Code.
 
 ## Snapshot your changes back into the repo
 
