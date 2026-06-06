@@ -16,6 +16,16 @@ extension, do not add any MCP server, do not start any OAuth / `/mcp` /
 `ctx7 setup` flow, do not send any data to remote services. Read-only
 inspection plus a written plan — that is the entire scope of this turn.
 
+IMPORTANT — account-bound MCP servers:
+The "Remote (claude.ai connectors — OAuth)" table in `claude-code-config.md`
+(Apollo.io, ClickUp, Google Drive, Slack, Gmail, Microsoft 365, SignNow,
+Notion, monday.com, Linear, Intercom, HubSpot, Figma, Canva, Box, Atlassian,
+Asana) is bound to the Anthropic account, not the machine. Accounts are
+sometimes shared. **Skip these entirely** in both the dry-run analysis and
+the apply plan — do not list them as "missing," do not generate `claude mcp
+add` lines for them, do not suggest OAuth into them. They travel with the
+account on their own; respect whatever the account owner has already set up.
+
 Steps:
 
 1. Detect my OS and resolve the VS Code user directory:
@@ -36,8 +46,10 @@ Steps:
    - Run `code --list-extensions` and compute: how many in `extensions.txt`
      are already installed, how many would be newly installed, and any I have
      that aren't in the repo (those would NOT be removed).
-   - Run `claude mcp list` and compute which servers from
-     `claude-code-config.md` are missing.
+   - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers
+     from `claude-code-config.md`: `context7`, `composio`, and the local
+     stdio servers (`chrome-devtools`, `playwright`, `terraform`, `firebase`,
+     `excalidraw`). Ignore the claude.ai connector table entirely.
    - Check whether `~/.claude/skills/<name>/` exists for each skill listed.
    - Check whether `~/.claude/rules/context7.md` exists.
    - Check whether `~/.claude/plugins/marketplaces/claude-plugins-official`
@@ -51,15 +63,18 @@ Steps:
    d. keybindings.json diff summary
    e. Extensions delta: { to_install: N, already_present: M, extra_on_my_machine: K }
       — list the names under each bucket, do not install
-   f. MCP servers delta: missing list + the exact `claude mcp add` line for each
-      — do not run them
+   f. MCP servers delta (machine-scoped only): missing list + the exact
+      `claude mcp add` line for each — do not run them. Add a short note
+      that claude.ai connectors are intentionally excluded because they
+      ride with the Anthropic account.
    g. Skills delta: missing list + how to copy them (`cp -R` from your machine
       or re-install via `find-skills`)
    h. Rules / plugin marketplaces delta
    i. Apply plan: the ordered command list I would run if I approved, including
       `./install.sh`, `npx ctx7 setup`, and any `claude mcp add` lines for
-      servers ctx7 doesn't cover. Mark which steps will open browser-based
-      OAuth (claude.ai connectors, Composio).
+      servers ctx7 doesn't cover (Composio + local stdio). Mark whether
+      Composio's `/mcp` OAuth would be needed. Do NOT include any step that
+      touches claude.ai connectors.
 
 5. Stop. Wait for me to say "apply" before doing anything in step 4i.
 
@@ -73,6 +88,8 @@ Hard rules:
 - Never authenticate to claude.ai connectors, Composio, Context7, or any
   third party. If an OAuth flow would be required to "verify" something,
   describe that fact in the plan instead of starting the flow.
+- Never touch claude.ai connector configuration. The account-bound list
+  above is off-limits — don't add, remove, re-auth, or even diagnose them.
 - If you're unsure whether an action is read-only, skip it and note the
   uncertainty in the plan.
 ```

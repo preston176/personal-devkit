@@ -33,6 +33,15 @@ extension, do not add any MCP server, do not start any OAuth / `/mcp` /
 `ctx7 setup` flow, do not send any data to remote services. Read-only
 inspection plus a written plan — that is the entire scope of this turn.
 
+IMPORTANT — account-bound MCP servers:
+The "Remote (claude.ai connectors — OAuth)" table in `claude-code-config.md`
+(Apollo.io, ClickUp, Google Drive, Slack, Gmail, Microsoft 365, SignNow,
+Notion, monday.com, Linear, Intercom, HubSpot, Figma, Canva, Box, Atlassian,
+Asana) is bound to the Anthropic account, not the machine. Accounts are
+sometimes shared. **Skip these entirely** — do not list them as "missing,"
+do not generate `claude mcp add` lines, do not suggest OAuth into them.
+They ride with the account; respect whatever the account owner has set up.
+
 Steps:
 
 1. Detect my OS and resolve the VS Code user directory:
@@ -49,15 +58,19 @@ Steps:
    - Run `code --list-extensions` and bucket each name in `extensions.txt`
      as already_present / would_install. List extensions I have that the
      repo doesn't — those will NOT be removed.
-   - Run `claude mcp list` and list which servers from
-     `claude-code-config.md` are missing.
+   - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers:
+     `context7`, `composio`, and the local stdio servers (`chrome-devtools`,
+     `playwright`, `terraform`, `firebase`, `excalidraw`). Ignore the
+     claude.ai connector table entirely.
    - Check `~/.claude/skills/<name>/` for each skill listed.
    - Check `~/.claude/rules/context7.md`.
    - Check `~/.claude/plugins/marketplaces/claude-plugins-official`.
 
 4. Produce a single report with: OS + paths, backup commands, per-file diff
-   summaries, extensions delta, MCP delta, skills delta, rules/plugin delta,
-   and the ordered apply plan. Mark which apply steps would open OAuth.
+   summaries, extensions delta, MCP delta (machine-scoped only — note the
+   claude.ai exclusion), skills delta, rules/plugin delta, and the ordered
+   apply plan. Mark whether Composio's `/mcp` OAuth would be needed. Do
+   NOT include any step that touches claude.ai connectors.
 
 5. Stop. Wait for me to say "apply" before doing anything in step 4's apply
    plan.
@@ -71,6 +84,8 @@ Hard rules:
 - Never authenticate to claude.ai connectors, Composio, Context7, or any
   third party. If an OAuth flow would be required to "verify" something,
   describe that fact in the plan instead of starting the flow.
+- Never touch claude.ai connector configuration. That list is off-limits —
+  don't add, remove, re-auth, or even diagnose them.
 - If unsure whether an action is read-only, skip it and note the
   uncertainty in the plan.
 ```
