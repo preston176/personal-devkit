@@ -58,6 +58,7 @@ _Captured 2026-06-06 from `~/.claude/`_
 | Server | URL | Notes |
 |---|---|---|
 | context7 | `https://mcp.context7.com/mcp` | configured with API key via `npx ctx7 setup` (stored in `~/.claude.json`) |
+| composio | `https://connect.composio.dev/mcp` | OAuth via `/mcp`; exposes tool search + remote workbench / bash |
 
 ### Local (stdio)
 
@@ -77,6 +78,7 @@ npx ctx7 setup
 
 # HTTP / SSE remote servers (skip context7 if you used ctx7 above)
 claude mcp add --transport http context7 https://mcp.context7.com/mcp
+claude mcp add --transport http composio https://connect.composio.dev/mcp
 claude mcp add --transport http "claude.ai Apollo.io"      https://mcp.apollo.io/mcp
 claude mcp add --transport http "claude.ai ClickUp"        https://mcp.clickup.com/mcp
 claude mcp add --transport http "claude.ai Google Drive"   https://drivemcp.googleapis.com/mcp/v1
