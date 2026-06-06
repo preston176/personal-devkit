@@ -8,11 +8,14 @@ My VS Code + Claude Code config, versioned so I can drop it onto a fresh machine
 ├── keybindings.json        ← custom shortcuts
 ├── extensions.txt          ← every extension I use (146 of them)
 ├── claude-code-config.md   ← MCP servers, skills, rules, plugin marketplaces
+├── SKILLS.md               ← what every installed Claude Code skill does
 ├── install.sh              ← restore script
 ├── export.sh               ← snapshot script
 ├── AGENT_PROMPT.md         ← the dry-run prompt to paste into your LLM
 └── CLAUDE.md               ← tells Claude Code how to treat this repo
 ```
+
+New to Claude Code skills? Start with [`SKILLS.md`](./SKILLS.md) — it walks through every one I have, grouped by what it's for, with the trigger phrase that fires it.
 
 ## Option A — Import with an AI agent (dry run by default)
 
