@@ -8,7 +8,7 @@ Paste the block below into Claude Code, Cursor, Codex, Gemini CLI, or any LLM wi
 
 ```text
 You are helping me import a development environment from the repo
-https://github.com/preston176/vscode-setup (clone it to a temp dir if it's not
+https://github.com/preston176/personal-devkit (clone it to a temp dir if it's not
 already local).
 
 This is a DRY RUN. Do not modify any file on my system, do not install any

@@ -1,6 +1,6 @@
-# vscode-setup
+# personal-devkit
 
-My VS Code + Claude Code config, versioned so I can drop it onto a fresh machine and feel at home in five minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
+My personal dev environment — VS Code settings, 146 extensions, Claude Code MCP servers, skills, and rules. Clone and feel at home on any machine in minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
 
 ## Folder layout
 
@@ -38,7 +38,7 @@ Clone the repo, then paste the block below into Claude Code, Cursor, Codex, Gemi
 
 ```text
 You are helping me import a development environment from the repo
-https://github.com/preston176/vscode-setup (clone it to a temp dir if it's not
+https://github.com/preston176/personal-devkit (clone it to a temp dir if it's not
 already local).
 
 This is a DRY RUN. Do not modify any file on my system, do not install any
@@ -114,8 +114,8 @@ The same prompt lives in [`agent/prompt.md`](./agent/prompt.md) if you want a pe
 ## Option B — Just run the script
 
 ```bash
-git clone https://github.com/preston176/vscode-setup.git
-cd vscode-setup
+git clone https://github.com/preston176/personal-devkit.git
+cd personal-devkit
 ./scripts/install.sh              # settings, keybindings, extensions
 ./scripts/install-skills.sh       # marketplace skills (npx skills add) + standalone
 npx ctx7 setup                    # Context7 MCP + skill + rule (handles API key)
