@@ -148,11 +148,19 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `flutter-development`
 - `godot`
 - `pdf-to-markdown`
-- `screen-demo`
+- `screen-demo` _(separate repo — see install command below)_
 - `shadcn`
 - `web-design-guidelines`
 
 > Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow. The `context7-mcp` skill is auto-installed when you run `npx ctx7 setup`.
+>
+> **screen-demo** lives at its own repo (454 MB — Remotion + Steel deps, too large to bundle here):
+> ```bash
+> git clone https://github.com/preston176/screen-demo-skill.git ~/.agents/skills/screen-demo
+> bash ~/.agents/skills/screen-demo/install.sh
+> # then: cp ~/.agents/skills/screen-demo/.env.example ~/.agents/skills/screen-demo/.env
+> # and add your STEEL_API_KEY
+> ```
 
 ## 5. Plugin marketplaces
 

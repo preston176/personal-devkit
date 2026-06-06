@@ -90,8 +90,10 @@ cat <<'EOF'
                       it also adds the MCP server and the rule)
    • screen-demo    → 454 MB (Remotion + Steel browser deps). Install only
                       if you actually need it:
-                      npx -y skills add <owner/repo@screen-demo> -g -y
-                      Browse https://skills.sh/ to find the right source.
+                        git clone https://github.com/preston176/screen-demo-skill.git \
+                          ~/.agents/skills/screen-demo
+                        bash ~/.agents/skills/screen-demo/install.sh
+                      Then copy .env.example → .env and add your STEEL_API_KEY.
 
 EOF
 
