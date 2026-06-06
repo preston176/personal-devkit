@@ -132,6 +132,6 @@ Or copy `~/.claude/skills/` wholesale from one machine to another — they're ju
 
 - **Skills** (`~/.claude/skills/<name>/SKILL.md`) — loaded on demand based on the task. The agent decides when to fire one. Think: domain-specific instruction packs.
 - **Rules** (`~/.claude/rules/<name>.md`) — always-on instructions. The Context7 rule, for example, *forces* the agent to look up library docs before answering. Use rules for guarantees, skills for capabilities.
-- **Plugins** (`~/.claude/plugins/`) — bundle of skills + agents + commands + hooks. Installed from a marketplace via `/plugin install <name>`. See [`claude-code-config.md`](./claude-code-config.md) for the marketplace I use.
+- **Plugins** (`~/.claude/plugins/`) — bundle of skills + agents + commands + hooks. Installed from a marketplace via `/plugin install <name>`. See [`config.md`](./config.md) for the marketplace I use.
 
 Skills are the unit you'll touch most often.

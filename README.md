@@ -2,24 +2,35 @@
 
 My VS Code + Claude Code config, versioned so I can drop it onto a fresh machine and feel at home in five minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
 
+## Folder layout
+
 ```
 .
-├── settings.json           ← editor settings, theme, formatters
-├── keybindings.json        ← custom shortcuts
-├── extensions.txt          ← every extension I use (146 of them)
-├── claude-code-config.md   ← MCP servers, skills, rules, plugin marketplaces
-├── SKILLS.md               ← what every installed Claude Code skill does
-├── install.sh              ← restore script
-├── export.sh               ← snapshot script
-├── AGENT_PROMPT.md         ← the dry-run prompt to paste into your LLM
-└── CLAUDE.md               ← tells Claude Code how to treat this repo
+├── README.md                ← you are here
+├── CLAUDE.md                ← tells Claude Code how to treat this repo (dry-run-first)
+│
+├── vscode/                  ← everything VS Code
+│   ├── settings.json        ← editor settings, theme, formatters
+│   ├── keybindings.json     ← custom shortcuts
+│   └── extensions.txt       ← every extension I use (146 of them)
+│
+├── claude/                  ← everything Claude Code
+│   ├── config.md            ← MCP servers, skills, rules, plugin marketplaces
+│   └── skills.md            ← what every installed skill does
+│
+├── agent/                   ← drop-in agent prompts
+│   └── prompt.md            ← the dry-run import prompt to paste into your LLM
+│
+└── scripts/                 ← shell automation
+    ├── install.sh           ← restore vscode/ onto a new machine
+    └── export.sh            ← snapshot the live VS Code state back into vscode/
 ```
 
-New to Claude Code skills? Start with [`SKILLS.md`](./SKILLS.md) — it walks through every one I have, grouped by what it's for, with the trigger phrase that fires it.
+Each top-level folder is single-purpose, so you can grep or symlink whichever half you care about. New to Claude Code skills? Start with [`claude/skills.md`](./claude/skills.md) — it walks every one I have, grouped by purpose, with the trigger phrase that fires it.
 
 ## Option A — Import with an AI agent (dry run by default)
 
-Clone the repo, then paste the block below into Claude Code, Cursor, Codex, Gemini CLI, or any agent with file + shell access. The agent will diff this repo against your machine and tell you **exactly what would change** — without installing a single extension, adding a single MCP server, or opening a single OAuth window.
+Clone the repo, then paste the block below into Claude Code, Cursor, Codex, Gemini CLI, or any agent with file + shell access. It diffs this repo against your machine and tells you **exactly what would change** — without installing a single extension, adding a single MCP server, or opening a single OAuth window.
 
 > Apply only after you've read the plan it produces.
 
@@ -34,13 +45,19 @@ extension, do not add any MCP server, do not start any OAuth / `/mcp` /
 inspection plus a written plan — that is the entire scope of this turn.
 
 IMPORTANT — account-bound MCP servers:
-The "Remote (claude.ai connectors — OAuth)" table in `claude-code-config.md`
+The "Remote (claude.ai connectors — OAuth)" table in `claude/config.md`
 (Apollo.io, ClickUp, Google Drive, Slack, Gmail, Microsoft 365, SignNow,
 Notion, monday.com, Linear, Intercom, HubSpot, Figma, Canva, Box, Atlassian,
 Asana) is bound to the Anthropic account, not the machine. Accounts are
 sometimes shared. **Skip these entirely** — do not list them as "missing,"
 do not generate `claude mcp add` lines, do not suggest OAuth into them.
 They ride with the account; respect whatever the account owner has set up.
+
+Repo layout:
+- vscode/{settings.json, keybindings.json, extensions.txt}
+- claude/{config.md, skills.md}
+- scripts/{install.sh, export.sh}
+- agent/prompt.md, CLAUDE.md, README.md
 
 Steps:
 
@@ -49,22 +66,22 @@ Steps:
    - Linux:   $HOME/.config/Code/User
    - Windows: %APPDATA%\Code\User
 
-2. Read every file in the repo: settings.json, keybindings.json,
-   extensions.txt, claude-code-config.md, install.sh, export.sh.
+2. Read every file in the repo under vscode/, claude/, scripts/, agent/,
+   plus README.md and CLAUDE.md.
 
 3. Compare against my current machine WITHOUT changing anything:
-   - Diff repo `settings.json` against my existing one.
-   - Diff repo `keybindings.json` against my existing one.
-   - Run `code --list-extensions` and bucket each name in `extensions.txt`
-     as already_present / would_install. List extensions I have that the
-     repo doesn't — those will NOT be removed.
-   - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers:
-     `context7`, `composio`, and the local stdio servers (`chrome-devtools`,
-     `playwright`, `terraform`, `firebase`, `excalidraw`). Ignore the
-     claude.ai connector table entirely.
-   - Check `~/.claude/skills/<name>/` for each skill listed.
-   - Check `~/.claude/rules/context7.md`.
-   - Check `~/.claude/plugins/marketplaces/claude-plugins-official`.
+   - Diff vscode/settings.json against my existing one (or note "no existing file").
+   - Diff vscode/keybindings.json against my existing one.
+   - Run `code --list-extensions` and bucket each name in vscode/extensions.txt
+     as already_present / would_install. List extensions I have that the repo
+     doesn't — those will NOT be removed.
+   - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers
+     from claude/config.md: `context7`, `composio`, and the local stdio
+     servers (`chrome-devtools`, `playwright`, `terraform`, `firebase`,
+     `excalidraw`). Ignore the claude.ai connector table entirely.
+   - Check ~/.claude/skills/<name>/ for each skill listed in claude/skills.md.
+   - Check ~/.claude/rules/context7.md.
+   - Check ~/.claude/plugins/marketplaces/claude-plugins-official.
 
 4. Produce a single report with: OS + paths, backup commands, per-file diff
    summaries, extensions delta, MCP delta (machine-scoped only — note the
@@ -76,11 +93,11 @@ Steps:
    plan.
 
 Hard rules:
-- Never run `./install.sh`, `code --install-extension`, `claude mcp add`,
+- Never run scripts/install.sh, `code --install-extension`, `claude mcp add`,
   `npx ctx7 setup`, or `/mcp` during this dry run.
 - Never overwrite, delete, or rename any file under
-  `~/Library/Application Support/Code/User/`, `~/.config/Code/User/`,
-  `~/.claude/`, or `~/.claude.json`.
+  ~/Library/Application Support/Code/User/, ~/.config/Code/User/,
+  ~/.claude/, or ~/.claude.json.
 - Never authenticate to claude.ai connectors, Composio, Context7, or any
   third party. If an OAuth flow would be required to "verify" something,
   describe that fact in the plan instead of starting the flow.
@@ -90,23 +107,23 @@ Hard rules:
   uncertainty in the plan.
 ```
 
-The same prompt lives in [`AGENT_PROMPT.md`](./AGENT_PROMPT.md) if you want a permalink to share. There's also a [`CLAUDE.md`](./CLAUDE.md) — if you open this repo in Claude Code, it'll pick those instructions up automatically.
+The same prompt lives in [`agent/prompt.md`](./agent/prompt.md) if you want a permalink. [`CLAUDE.md`](./CLAUDE.md) makes Claude Code pick up the dry-run-first behavior automatically when this repo is opened.
 
 ## Option B — Just run the script
 
 ```bash
 git clone https://github.com/preston176/vscode-setup.git
 cd vscode-setup
-./install.sh                      # settings, keybindings, extensions
+./scripts/install.sh              # settings, keybindings, extensions
 npx ctx7 setup                    # Context7 MCP + skill + rule (handles API key)
 ```
 
-Then open [`claude-code-config.md`](./claude-code-config.md) and run the `claude mcp add` block for any remaining connectors. OAuth into them via `/mcp` inside Claude Code.
+Then open [`claude/config.md`](./claude/config.md) and run the `claude mcp add` block for any remaining connectors. OAuth into them via `/mcp` inside Claude Code.
 
 ## Snapshot your changes back into the repo
 
 ```bash
-./export.sh
+./scripts/export.sh
 git add -A && git commit -m "sync" && git push
 ```
 
@@ -119,10 +136,10 @@ git add -A && git commit -m "sync" && git push
 
 ## Handy bits
 
-Format `settings.json` before committing:
+Format `vscode/settings.json` before committing:
 
 ```bash
-jq . settings.json > tmp && mv tmp settings.json
+jq . vscode/settings.json > tmp && mv tmp vscode/settings.json
 ```
 
 Back up before restoring (the agent dry run already prints these for you):
@@ -135,5 +152,5 @@ cp "$HOME/Library/Application Support/Code/User/keybindings.json" keybindings.ba
 Export a specific VS Code profile instead of the default one:
 
 ```bash
-code --profile MyProfile --list-extensions > profile-extensions.txt
+code --profile MyProfile --list-extensions > vscode/profile-extensions.txt
 ```
