@@ -31,7 +31,9 @@ donjayamanne.python-environment-manager
 donjayamanne.python-extension-pack
 dsznajder.es7-react-js-snippets
 ecmel.vscode-html-css
+emmanuelbeziat.vscode-great-icons
 equimper.react-native-react-redux
+es6kr.claude-sessions
 esbenp.prettier-vscode
 expo.vscode-expo-theme
 expo.vscode-expo-tools
@@ -42,6 +44,7 @@ geequlim.godot-tools
 github.codespaces
 github.github-vscode-theme
 github.vscode-github-actions
+growthjack.claude-code-usage
 gruntfuggly.todo-tree
 hbenl.vscode-test-explorer
 humao.rest-client
@@ -53,6 +56,7 @@ jawandarajbir.react-vscode-extension-pack
 johnpapa.vscode-peacock
 kaih2o.python-resource-monitor
 kevinrose.vsc-python-indent
+kilocode.kilo-code
 littlefoxteam.vscode-python-test-adapter
 loczek.next-js-ts-snippets
 marus25.cortex-debug
@@ -64,10 +68,7 @@ mechatroner.rainbow-csv
 mintlify.document
 monish.regexsnippets
 monokai.theme-monokai-pro-vscode
-moonshot-ai.kimi-code
 motoko-lsp-client.motoko-lsp-client
-ms-azuretools.vscode-azureresourcegroups
-ms-azuretools.vscode-azurestaticwebapps
 ms-azuretools.vscode-containers
 ms-azuretools.vscode-docker
 ms-dotnettools.vscode-dotnet-runtime
@@ -104,6 +105,7 @@ pkief.material-icon-theme
 postman.postman-for-vscode
 preston176.flowlens
 quicktype.quicktype
+qwenlm.qwen-code-vscode-ide-companion
 qwtel.sqlite-viewer
 rangav.vscode-thunder-client
 rebornix.prolog
@@ -118,7 +120,6 @@ skyran.js-jsx-snippets
 streetsidesoftware.code-spell-checker
 supermaven.supermaven
 svelte.svelte-vscode
-tal7aouy.icons
 tal7aouy.theme
 teabyii.ayu
 tomoki1207.pdf
@@ -133,12 +134,12 @@ wakatime.vscode-wakatime
 wallabyjs.console-ninja
 wart.ariake-dark
 wayou.vscode-todo-highlight
-webnative.webnative
 weykon.window-zen-mode
 wholroyd.jinja
 xabikos.javascriptsnippets
 xabikos.reactsnippets
 yudinikita.vscode-theme-kite
+yusifaliyevpro.vscicons
 yzane.markdown-pdf
 yzhang.markdown-all-in-one
 zhuangtongfa.material-theme

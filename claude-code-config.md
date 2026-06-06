@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-06-04 from `~/.claude/`_
+_Captured 2026-06-06 from `~/.claude/`_
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -24,6 +24,10 @@ _Captured 2026-06-04 from `~/.claude/`_
 
 - Do **not** add Claude attribution to git artifacts. Omit the `Co-Authored-By: Claude …` trailer from commit messages and omit the "🤖 Generated with [Claude Code]" footer from PR bodies. This applies to every repo unless a project-level `CLAUDE.md` overrides it.
 ```
+
+### Global rules (`~/.claude/rules/`)
+
+- `context7.md` — installed by `npx ctx7 setup`. Forces Context7 MCP lookups for library/framework/SDK/CLI questions before answering. See `~/.claude/rules/context7.md` (also auto-installed when running `ctx7` again).
 
 ## 3. MCP servers (global / user scope)
 
@@ -51,9 +55,9 @@ _Captured 2026-06-04 from `~/.claude/`_
 
 ### Remote (HTTP)
 
-| Server | URL |
-|---|---|
-| context7 | `https://mcp.context7.com/mcp` |
+| Server | URL | Notes |
+|---|---|---|
+| context7 | `https://mcp.context7.com/mcp` | configured with API key via `npx ctx7 setup` (stored in `~/.claude.json`) |
 
 ### Local (stdio)
 
@@ -68,7 +72,10 @@ _Captured 2026-06-04 from `~/.claude/`_
 ### Replication commands
 
 ```bash
-# HTTP / SSE remote servers
+# Context7 (preferred: handles API key + installs companion skill/rule)
+npx ctx7 setup
+
+# HTTP / SSE remote servers (skip context7 if you used ctx7 above)
 claude mcp add --transport http context7 https://mcp.context7.com/mcp
 claude mcp add --transport http "claude.ai Apollo.io"      https://mcp.apollo.io/mcp
 claude mcp add --transport http "claude.ai ClickUp"        https://mcp.clickup.com/mcp
@@ -131,6 +138,7 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 
 **General dev**
 - `code-structure`
+- `context7-mcp` _(installed by `npx ctx7 setup`)_
 - `create-task`
 - `drizzle`
 - `fallow`
@@ -138,10 +146,11 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `flutter-development`
 - `godot`
 - `pdf-to-markdown`
+- `screen-demo`
 - `shadcn`
 - `web-design-guidelines`
 
-> Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow.
+> Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow. The `context7-mcp` skill is auto-installed when you run `npx ctx7 setup`.
 
 ## 5. Plugin marketplaces
 

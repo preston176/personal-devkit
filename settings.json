@@ -227,7 +227,7 @@
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-post-response.instructions.md": true,
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-pre-request.instructions.md": true,
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-post-response.instructions.md": true,
-    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-pre-request.instructions.md": true
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-pre-request.instructions.md": true,
   },
   "terminal.integrated.allowedLinkSchemes": [
     "file",
@@ -238,7 +238,6 @@
     "vscode-insiders",
     "docker-desktop",
   ],
-  "workbench.iconTheme": "icons",
   "workbench.editor.empty.hint": "hidden",
   "remote.autoForwardPortsSource": "hybrid",
   "oneDarkPro.vivid": false,
@@ -309,7 +308,15 @@
   "window.commandCenter": false,
   "console-ninja.featureSet": "Community",
   "supermaven.enable": {
-    "*": false,
+    "*": true,
   },
   "claudeCode.allowDangerouslySkipPermissions": true,
+  "qwen-code.provider": "api-key",
+  "terminal.integrated.commandsToSkipShell": [
+    "kilo-code.new.agentManagerOpen",
+    "kilo-code.new.agentManager.showTerminal",
+    "kilo-code.new.agentManager.runScript",
+  ],
+  "workbench.iconTheme": "material-icon-theme",
+  "chat.disableAIFeatures": true,
 }
