@@ -118,7 +118,7 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `clerk-billing`
 - `clerk-chrome-extension-patterns`
 - `clerk-custom-ui`
-- `clerk-expo-patterns`
+- `clerk-expo`
 - `clerk-nextjs-patterns`
 - `clerk-nuxt-patterns`
 - `clerk-orgs`

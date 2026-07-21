@@ -21,7 +21,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `clerk-nuxt-patterns` | Nuxt 3 with `@clerk/nuxt`: middleware, composables, server API routes, SSR. |
 | `clerk-astro-patterns` | Astro middleware, SSR pages, island components, API routes, static vs SSR rendering. |
 | `clerk-tanstack-patterns` | TanStack Start: `createServerFn`, `beforeLoad` guards, loaders, Vinxi server. |
-| `clerk-expo-patterns` | Expo / React Native: `SecureStore` token cache, OAuth deep linking, Expo Router protected routes. |
+| `clerk-expo` | Expo / React Native: `SecureStore` token cache, OAuth deep linking, Expo Router protected routes. |
 | `clerk-swift` | Native iOS via `ClerkKit` / `ClerkKitUI`. Prebuilt `AuthView` or custom flows. Not for React Native. |
 | `clerk-android` | Native Android via `clerk-android` + Jetpack Compose. Prebuilt `AuthView` / `UserButton` or API-driven flows. Not for React Native. |
 | `clerk-chrome-extension-patterns` | Chrome extensions: popup / sidepanel setup, `syncHost` for OAuth via web app, `createClerkClient` for service workers, stable CRX IDs. |

@@ -30,7 +30,7 @@ MARKETPLACE_SKILLS=(
   "clerk/skills@clerk-billing"
   "clerk/skills@clerk-chrome-extension-patterns"
   "clerk/skills@clerk-custom-ui"
-  "clerk/skills@clerk-expo-patterns"
+  "clerk/skills@clerk-expo"
   "clerk/skills@clerk-nextjs-patterns"
   "clerk/skills@clerk-nuxt-patterns"
   "clerk/skills@clerk-orgs"
