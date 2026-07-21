@@ -80,20 +80,59 @@ if [ -d "$SKILLS_SRC" ]; then
   echo "✅ Standalone skills copied to $SKILLS_DST"
 fi
 
-# ---------- 3. Notes on special cases ----------
+# ---------- 3. Own skills (cloned from GitHub, symlinked in) ----------
+#
+# Skills I maintain in my own repos. Cloned into ~/Code/personal/ and
+# symlinked into ~/.claude/skills/ so edits round-trip via `git push`.
+
+OWN_SKILLS_DIR="$HOME/Code/personal"
+mkdir -p "$OWN_SKILLS_DIR"
+
+declare -a OWN_SKILLS=(
+  "nextjs-structure|https://github.com/preston176/nextjs-structure.git"
+)
+
+echo "🔧 Linking own skills..."
+for entry in "${OWN_SKILLS[@]}"; do
+  name="${entry%%|*}"
+  url="${entry##*|}"
+  target="$OWN_SKILLS_DIR/$name"
+  link="$SKILLS_DST/$name"
+
+  if [ ! -d "$target" ]; then
+    git clone "$url" "$target"
+  fi
+  if [ ! -e "$link" ]; then
+    ln -s "$target" "$link"
+    echo "  → $name (symlinked)"
+  else
+    echo "  → $name (already linked)"
+  fi
+done
+
+# ---------- 4. Notes on special cases ----------
 
 cat <<'EOF'
 
-ℹ️  Special-case skills not handled by this script:
+ℹ️  Special-case skills / plugins not handled by this script:
 
    • context7-mcp   → installed by `npx ctx7 setup` (run that separately;
                       it also adds the MCP server and the rule)
+
    • screen-demo    → 454 MB (Remotion + Steel browser deps). Install only
                       if you actually need it:
                         git clone https://github.com/preston176/screen-demo-skill.git \
                           ~/.agents/skills/screen-demo
                         bash ~/.agents/skills/screen-demo/install.sh
                       Then copy .env.example → .env and add your STEEL_API_KEY.
+
+   • Plugins        → installed inside Claude Code, not via shell. Run:
+                        /plugin marketplace add anthropics/claude-code
+                        /plugin install superpowers
+                        /plugin install pr-review-toolkit
+                      superpowers bundles ~14 process skills (brainstorming,
+                      systematic-debugging, TDD, writing-plans, etc.).
+                      pr-review-toolkit adds /review-pr + review subagents.
 
 EOF
 

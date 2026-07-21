@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-06-06 from `~/.claude/`_
+_Captured 2026-07-21 from `~/.claude/`_
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -166,7 +166,14 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 
 Marketplace installed: **`claude-plugins-official`** (at `~/.claude/plugins/marketplaces/claude-plugins-official`).
 
-Available plugins from it (not necessarily enabled — enable via `/plugin`):
+### Enabled on this machine
+
+| Plugin | Version | What it adds |
+|---|---|---|
+| `superpowers` | 6.1.1 | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
+| `pr-review-toolkit` | — | `/review-pr` command + subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. |
+
+### Available in the marketplace (not necessarily enabled)
 
 ```
 agent-sdk-dev          claude-code-setup       claude-md-management
@@ -175,8 +182,9 @@ commit-commands        cwc-makers              example-plugin
 explanatory-output-style  feature-dev          frontend-design
 hookify                learning-output-style    math-olympiad
 mcp-server-dev         mcp-tunnels              playground
-plugin-dev             pr-review-toolkit        ralph-loop
-security-guidance      session-report           skill-creator
+plugin-dev             pr-review-toolkit        project-artifact
+ralph-loop             receipts                 security-guidance
+session-report         skill-creator
 # Language servers:
 clangd-lsp  csharp-lsp  gopls-lsp  jdtls-lsp  kotlin-lsp  lua-lsp
 php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp
@@ -187,5 +195,7 @@ php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp
 ```bash
 # Inside Claude Code:
 /plugin marketplace add anthropics/claude-code   # adds claude-plugins-official
-/plugin install <plugin-name>                    # enable the ones you want
+/plugin install superpowers                      # process skills bundle
+/plugin install pr-review-toolkit                # /review-pr + review subagents
+# ...or /plugin install <any other name> from the list above.
 ```

@@ -1,6 +1,6 @@
 # personal-devkit
 
-My personal dev environment — VS Code settings, 146 extensions, Claude Code MCP servers, skills, and rules. Clone and feel at home on any machine in minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
+My personal dev environment — VS Code settings, 153 extensions, Claude Code MCP servers, skills, plugins, and rules. Clone and feel at home on any machine in minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
 
 ## Folder layout
 
@@ -12,7 +12,7 @@ My personal dev environment — VS Code settings, 146 extensions, Claude Code MC
 ├── vscode/                  ← everything VS Code
 │   ├── settings.json        ← editor settings, theme, formatters
 │   ├── keybindings.json     ← custom shortcuts
-│   └── extensions.txt       ← every extension I use (146 of them)
+│   └── extensions.txt       ← every extension I use (153 of them)
 │
 ├── claude/                  ← everything Claude Code
 │   ├── config.md            ← MCP servers, skills, rules, plugin marketplaces

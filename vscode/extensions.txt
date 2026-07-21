@@ -20,8 +20,8 @@ chadbaileyvh.oled-pure-black---vscode
 christian-kohler.path-intellisense
 cstrap.flask-snippets
 cstrap.python-snippets
-cweijan.dbclient-jdbc
-cweijan.vscode-database-client2
+dart-code.dart-code
+dart-code.flutter
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
 dfinity-foundation.vscode-motoko
@@ -39,6 +39,7 @@ expo.vscode-expo-theme
 expo.vscode-expo-tools
 fallenmax.mithril-emmet
 fallow-rs.fallow-vscode
+figma.figma-vscode-extension
 formulahendry.code-runner
 geequlim.godot-tools
 github.codespaces
@@ -58,6 +59,7 @@ kaih2o.python-resource-monitor
 kevinrose.vsc-python-indent
 kilocode.kilo-code
 littlefoxteam.vscode-python-test-adapter
+llvm-vs-code-extensions.lldb-dap
 loczek.next-js-ts-snippets
 marus25.cortex-debug
 mcu-debug.debug-tracker-vscode
@@ -73,6 +75,7 @@ ms-azuretools.vscode-containers
 ms-azuretools.vscode-docker
 ms-dotnettools.vscode-dotnet-runtime
 ms-kubernetes-tools.vscode-kubernetes-tools
+ms-playwright.playwright
 ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
@@ -116,10 +119,13 @@ rodrigovallades.es7-react-js-snippets
 saoudrizwan.claude-dev
 saratravi.elixir-formatter
 satyam11.christmas-theme
+shahilkumar.docxreader
+siddharthprakash.flappy-bird
 skyran.js-jsx-snippets
 streetsidesoftware.code-spell-checker
 supermaven.supermaven
 svelte.svelte-vscode
+swiftlang.swift-vscode
 tal7aouy.theme
 teabyii.ayu
 tomoki1207.pdf
@@ -128,6 +134,7 @@ unifiedjs.vscode-mdx
 usernamehw.errorlens
 vadimcn.vscode-lldb
 vitest.explorer
+vscjava.vscode-gradle
 vscodevim.vim
 vue.volar
 wakatime.vscode-wakatime

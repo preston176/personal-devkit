@@ -115,6 +115,27 @@ These are the skills that operate on Claude Code itself rather than on your code
 
 ---
 
+## My own skills
+
+Skills I maintain and use across machines. Installed by cloning the source repo and symlinking into `~/.claude/skills/` so edits round-trip via `git`.
+
+| Skill | What it does |
+|---|---|
+| `nextjs-structure` | Audits / refactors a Next.js codebase toward the monorepo + App Router + tRPC + feature-modular patterns used by Cal.com, Rallly, Dub, Formbricks, Inbox Zero, and other production OSS projects. Fires when asked how to structure a Next.js app or when invoking `/nextjs-structure`. Source: [github.com/preston176/nextjs-structure](https://github.com/preston176/nextjs-structure). |
+
+---
+
+## Plugins (enabled)
+
+Plugins bundle a set of skills + agents + slash commands under one install. Enabled via `/plugin install <name>` from inside Claude Code (see [`config.md`](./config.md) for the marketplace).
+
+| Plugin | What it adds |
+|---|---|
+| `superpowers` | A ~14-skill process pack that changes how the agent works, not just what it knows. Includes `brainstorming` (mandatory before creative work), `systematic-debugging` (mandatory for any bug/test failure), `test-driven-development`, `writing-plans` + `executing-plans` + `subagent-driven-development`, `verification-before-completion`, `requesting-code-review` + `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers` (the entry-point rule). If you install one plugin, install this one. |
+| `pr-review-toolkit` | Adds the `/review-pr` slash command plus a fleet of subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. Use before opening or merging a PR. |
+
+---
+
 ## How to add or remove skills on a new machine
 
 This repo gives you two install paths:
@@ -137,8 +158,10 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 |---|---|---|
 | Marketplace (Clerk, Vercel, shadcn, fallow, Harbor) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
+| Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
+| Plugin-bundled (superpowers, pr-review-toolkit) | under `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/` | `/plugin install <name>` from inside Claude Code |
 
 ---
 

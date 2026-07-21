@@ -227,7 +227,7 @@
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-post-response.instructions.md": true,
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-folder-pre-request.instructions.md": true,
     "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-post-response.instructions.md": true,
-    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-pre-request.instructions.md": true,
+    "/var/folders/2x/zcd4sd2530jf6wxl2dp12g2w0000gn/T/postman-http-request-pre-request.instructions.md": true
   },
   "terminal.integrated.allowedLinkSchemes": [
     "file",
@@ -319,4 +319,13 @@
   ],
   "workbench.iconTheme": "material-icon-theme",
   "chat.disableAIFeatures": true,
+  "kilo-code.new.autoApprove.enabled": true,
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml",
+  ],
 }
