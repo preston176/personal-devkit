@@ -138,6 +138,31 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `vercel-react-native-skills`
 - `vercel-react-view-transitions`
 
+**Expo / EAS** _(`expo/skills`)_
+- `expo-router`
+- `expo-project-structure`
+- `expo-ui`
+- `expo-native-ui`
+- `expo-dom`
+- `expo-web-to-native`
+- `expo-data-fetching`
+- `expo-tailwind-setup`
+- `expo-dev-client`
+- `expo-module`
+- `expo-migrate-module`
+- `expo-brownfield`
+- `expo-app-clip`
+- `expo-upgrade`
+- `expo-examples`
+- `expo-skill-eval`
+- `expo-skill-feedback`
+- `eas-workflows`
+- `eas-hosting`
+- `eas-update-insights`
+- `eas-observe`
+- `eas-simulator`
+- `eas-app-stores`
+
 **General dev**
 - `code-structure`
 - `context7-mcp` _(installed by `npx ctx7 setup`)_

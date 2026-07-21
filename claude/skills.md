@@ -86,6 +86,36 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `flutter-development` | Cross-platform Flutter / Dart. Widgets, Provider / BLoC, navigation, API integration, Material. |
 | `godot` | Godot Engine projects. `.gd` / `.tscn` / `.tres` formats, signal-driven and resource-based patterns, scene/resource debugging, CLI workflows. Provides the `godot` command for run / validate / import / export. |
 
+### Expo / React Native — `expo/skills`
+
+The official Expo skill family. Framework skills are open source; the `eas-*` skills drive the paid EAS cloud services.
+
+| Skill | What it does |
+|---|---|
+| `expo-router` | File-based navigation: routes, groups, dynamic routes, `Link` with previews, folder organization. |
+| `expo-project-structure` | Folder layout for a new Expo app — where each file should live when scaffolding with Expo Router. |
+| `expo-ui` | Native UI via `@expo/ui`: real SwiftUI on iOS and Jetpack Compose on Android, rendered from React. |
+| `expo-native-ui` | Native-feeling screens: Apple HIG styling, semantic colors, native controls, SF Symbols, animations. |
+| `expo-dom` | Expo DOM components — run web code in a webview on native, as-is on web. Incremental web→native migration. |
+| `expo-web-to-native` | Port an existing web React app (e.g. Next.js) into a native iOS/Android app. |
+| `expo-data-fetching` | Any network request / API call: `fetch`, React Query, SWR, error handling, caching. |
+| `expo-tailwind-setup` | Tailwind CSS v4 in Expo via react-native-css + NativeWind v5 for universal styling. |
+| `expo-dev-client` | Build and distribute dev clients locally or via TestFlight for internal testing. |
+| `expo-module` | Write Expo native modules/views with the Expo Modules API (Swift, Kotlin, TypeScript). |
+| `expo-migrate-module` | Migrate an Apple/Swift native module from Expo Modules API 1.0 DSL to the 2.0 macro API. |
+| `expo-brownfield` | Embed Expo / React Native into an existing native iOS or Android app. |
+| `expo-app-clip` | Add an iOS App Clip target: AASA, `apple-app-site-association`, smart app banners. |
+| `expo-upgrade` | Upgrade Expo SDK versions and fix dependency issues. |
+| `expo-examples` | The `expo/examples` repo (~70 `with-*` integrations: Stripe, Clerk, Supabase, OpenAI, maps, SQLite…). |
+| `expo-skill-eval` | Evaluate Expo skills end-to-end — trigger accuracy, code quality, simulator/emulator screenshots. |
+| `expo-skill-feedback` | Submit feedback on an Expo skill (or Expo itself); toggle the opt-in anonymous usage telemetry. |
+| `eas-workflows` | Write and understand EAS workflow YAML (CI/CD for Expo projects). |
+| `eas-hosting` | Deploy Expo websites and Router API routes to EAS Hosting: web export, `eas deploy`, PR preview URLs. |
+| `eas-update-insights` | Health of published EAS Updates: crash rates, install/launch counts, unique users, payload size. |
+| `eas-observe` | EAS Observe: add `expo-observe` (AppMetricsRoot/ObserveRoot HOC, `markInteractive`) and read metrics. |
+| `eas-simulator` | Run and control your app on a remote iOS/Android simulator hosted on EAS cloud. |
+| `eas-app-stores` | Build and submit to the App Store, Google Play, and TestFlight; configure `eas.json`. |
+
 ---
 
 ## UI & design
