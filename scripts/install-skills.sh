@@ -81,6 +81,7 @@ MARKETPLACE_SKILLS=(
   "shadcn/ui@shadcn"
   "fallow-rs/fallow-skills@fallow"
   "harbor-framework/harbor@create-task"
+  "pstack/skills@unslop"
 )
 
 for skill in "${MARKETPLACE_SKILLS[@]}"; do

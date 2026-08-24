@@ -58,6 +58,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `simplify` | Reviews changed code for reuse, quality, efficiency. Fixes issues it finds. |
 | `review` | Reviews a pull request. |
 | `security-review` | Security review of pending changes on the current branch. |
+| `resilient-web-app` | Build-time defaults for web apps that survive backgrounded/idle tabs, expired sessions, and redeploys — no frozen spinners, stuck redirects, or hung actions. Fires when scaffolding a new web app/SPA, writing Server Actions, wiring auth/sessions, adding fetch/loading states, or adding SSE/WebSockets. Applied proactively, not just on review. |
 
 ---
 
@@ -68,6 +69,14 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `context7-mcp` | Routes library / framework / SDK / API questions to the Context7 MCP server for current docs instead of relying on training data. Auto-installed by `npx ctx7 setup`. Companion rule at `~/.claude/rules/context7.md` makes this mandatory for any library question. |
 | `pdf-to-markdown` | Converts whole PDFs to clean Markdown so the agent can load the full document into context. Use when grep / page-by-page would miss something. |
 | `claude-api` | Build / debug / optimize Claude API + Anthropic SDK apps. Handles prompt caching, model migrations between Claude versions, replacements for retired models. Fires on `anthropic` / `@anthropic-ai/sdk` imports or when adding tool use / batching / files / citations / memory. |
+
+---
+
+## Writing
+
+| Skill | What it does |
+|---|---|
+| `unslop` | Edits text to remove AI-writing tells (em dashes, hedging, filler) and add human voice. Marked "must always apply" — fires on any generated prose, not just on request. |
 
 ---
 
@@ -186,8 +195,8 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 
 | Source | Where it lives | How it replicates |
 |---|---|---|
-| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
-| Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
+| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
+| Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
 | Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |

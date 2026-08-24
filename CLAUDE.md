@@ -28,7 +28,7 @@ If a user pastes it, follow it verbatim.
 ```
 vscode/    settings.json, keybindings.json, extensions.txt — overwritten on apply
 claude/    config.md (MCP / skills / rules / plugins ref), skills.md (skill tour),
-           skills/ (5 standalone skill folders bundled in-repo)
+           skills/ (6 standalone skill folders bundled in-repo)
 agent/     prompt.md (the dry-run prompt)
 scripts/   install.sh (VS Code), install-skills.sh (Claude skills), export.sh
 ```
@@ -40,7 +40,7 @@ Walk through these in order, confirming after each:
 1. Back up existing `settings.json` and `keybindings.json` to `*.backup.json`.
 2. Run `./scripts/install.sh` (settings, keybindings, extensions).
 3. Run `./scripts/install-skills.sh` (marketplace skills via `npx skills add`,
-   plus copying the 5 standalone skills from `claude/skills/` into
+   plus copying the 6 standalone skills from `claude/skills/` into
    `~/.claude/skills/`). Skips `context7-mcp` and `screen-demo` — see the
    script's footer notes.
 4. Run `npx ctx7 setup` (installs Context7 MCP with API key + companion

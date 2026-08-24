@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-07-21 from `~/.claude/`_
+_Captured 2026-08-24 from `~/.claude/`_
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -9,11 +9,19 @@ _Captured 2026-07-21 from `~/.claude/`_
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "enabledPlugins": {
+    "pr-review-toolkit@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false
+  },
   "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "skipAutoPermissionPrompt": true,
+  "model": "sonnet"
 }
 ```
+
+Note: `superpowers` is installed but currently **disabled** (`false`) — only `pr-review-toolkit` is active. See section 5.
 
 ## 2. Global instructions (`~/.claude/CLAUDE.md`)
 
@@ -52,6 +60,8 @@ _Captured 2026-07-21 from `~/.claude/`_
 | claude.ai Box | `https://mcp.box.com` |
 | claude.ai Atlassian | `https://mcp.atlassian.com/v1/mcp` |
 | claude.ai Asana | `https://mcp.asana.com/sse` |
+| claude.ai Composio | `https://connect.composio.dev/mcp` |
+| claude.ai Intuit QuickBooks | `https://ai-inc.quickbooks.intuit.com/v1/mcp` |
 
 ### Remote (HTTP)
 
@@ -96,6 +106,8 @@ claude mcp add --transport http "claude.ai Canva"          https://mcp.canva.com
 claude mcp add --transport http "claude.ai Box"            https://mcp.box.com
 claude mcp add --transport http "claude.ai Atlassian"      https://mcp.atlassian.com/v1/mcp
 claude mcp add --transport sse  "claude.ai Asana"          https://mcp.asana.com/sse
+claude mcp add --transport http "claude.ai Composio"       https://connect.composio.dev/mcp
+claude mcp add --transport http "claude.ai Intuit QuickBooks" https://ai-inc.quickbooks.intuit.com/v1/mcp
 
 # Local stdio servers
 claude mcp add chrome-devtools -- npx -y chrome-devtools-mcp
@@ -173,8 +185,10 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `flutter-development`
 - `godot`
 - `pdf-to-markdown`
+- `resilient-web-app`
 - `screen-demo` _(separate repo — see install command below)_
 - `shadcn`
+- `unslop` _(marketplace: `pstack/skills`)_
 - `web-design-guidelines`
 
 > Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow. The `context7-mcp` skill is auto-installed when you run `npx ctx7 setup`.
@@ -193,10 +207,10 @@ Marketplace installed: **`claude-plugins-official`** (at `~/.claude/plugins/mark
 
 ### Enabled on this machine
 
-| Plugin | Version | What it adds |
-|---|---|---|
-| `superpowers` | 6.1.1 | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
-| `pr-review-toolkit` | — | `/review-pr` command + subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. |
+| Plugin | Version | Status | What it adds |
+|---|---|---|---|
+| `pr-review-toolkit` | — | enabled | `/review-pr` command + subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. |
+| `superpowers` | 6.1.1 | installed, **disabled** | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. Turned off via `enabledPlugins` in `settings.json` (see section 1). See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
 
 ### Available in the marketplace (not necessarily enabled)
 
