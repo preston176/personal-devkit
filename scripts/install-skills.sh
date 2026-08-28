@@ -82,6 +82,11 @@ MARKETPLACE_SKILLS=(
   "fallow-rs/fallow-skills@fallow"
   "harbor-framework/harbor@create-task"
   "pstack/skills@unslop"
+
+  # Grilling (github.com/mattpocock/skills)
+  # grill-me is only the /grill-me entrypoint; it calls `grilling`, so install both.
+  "mattpocock/skills@grilling"
+  "mattpocock/skills@grill-me"
 )
 
 for skill in "${MARKETPLACE_SKILLS[@]}"; do

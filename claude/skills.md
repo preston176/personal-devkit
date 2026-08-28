@@ -62,6 +62,15 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 
 ---
 
+## Planning & decision-making
+
+| Skill | What it does |
+|---|---|
+| `grilling` | Interviews you relentlessly about a plan, decision, or idea until you both land on a shared understanding. Maps the problem as a design tree and works it in numbered rounds, asking every question whose prerequisites are already settled, with its own recommended answer attached to each so you can wave through the ones you don't care about. Fires on any "grill" trigger phrase. |
+| `grill-me` | The `/grill-me` entrypoint. Marked `disable-model-invocation`, so it never fires on its own; it only runs when you invoke it by name, and it hands straight off to `grilling`. Install both: on its own it has nothing to call. |
+
+---
+
 ## Documentation & research
 
 | Skill | What it does |
@@ -195,7 +204,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 
 | Source | Where it lives | How it replicates |
 |---|---|---|
-| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
+| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop, grilling) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
 | Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
