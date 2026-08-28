@@ -140,6 +140,7 @@ The official Expo skill family. Framework skills are open source; the `eas-*` sk
 
 | Skill | What it does |
 |---|---|
+| `impeccable` | Design and frontend quality: UX review, visual hierarchy, information architecture, accessibility, responsive behavior, theming, typography, spacing, color, motion, UX copy, error and empty states. Bundles an anti-pattern detector (`npx impeccable detect`) and installs PostToolUse + Stop hooks that check UI files as you edit. Run `/impeccable init` once per project to give it design context. Installed by its own CLI, not the skills marketplace. |
 | `shadcn` | Manages shadcn/ui components: add, search, fix, debug, style, compose. Triggers on `components.json` projects, `shadcn init`, or any preset code. |
 | `web-design-guidelines` | Reviews UI code for accessibility, UX, and Web Interface Guidelines compliance. Fires on "review my UI," "check accessibility," "audit design." |
 | `screen-demo` | Recording / capturing UI for demos. |
@@ -208,6 +209,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
 | Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
+| Own installer (impeccable) | real folder under `~/.claude/skills/`, plus hooks in `~/.claude/settings.local.json` | `npx impeccable install --global --providers claude --yes` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
 | Plugin-bundled (superpowers, pr-review-toolkit) | under `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/` | `/plugin install <name>` from inside Claude Code |
 

@@ -141,7 +141,20 @@ for entry in "${OWN_SKILLS[@]}"; do
   fi
 done
 
-# ---------- 4. Notes on special cases ----------
+# ---------- 4. Impeccable (its own npm CLI, not the skills marketplace) ----------
+#
+# Ships its own installer, so `npx skills add` cannot fetch it. Two things to
+# know: `--providers claude` keeps it out of ~/.codex, ~/.cursor and ~/.gemini,
+# and the installer writes PostToolUse + Stop hooks into
+# ~/.claude/settings.local.json. Without --global it installs into the current
+# project instead, and will also target .github/ if the repo has a .github
+# folder, which is rarely what you want.
+
+echo "🎨 Installing impeccable (design skills + anti-pattern detection)..."
+npx -y impeccable@latest install --global --providers claude --yes \
+  || echo "  (skipped: install failed or already present)"
+
+# ---------- 5. Notes on special cases ----------
 
 cat <<'EOF'
 
