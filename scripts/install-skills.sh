@@ -87,6 +87,9 @@ MARKETPLACE_SKILLS=(
   # grill-me is only the /grill-me entrypoint; it calls `grilling`, so install both.
   "mattpocock/skills@grilling"
   "mattpocock/skills@grill-me"
+
+  # Test-driven development (github.com/mattpocock/skills)
+  "mattpocock/skills@tdd"
 )
 
 for skill in "${MARKETPLACE_SKILLS[@]}"; do

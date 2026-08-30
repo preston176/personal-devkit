@@ -59,6 +59,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `review` | Reviews a pull request. |
 | `security-review` | Security review of pending changes on the current branch. |
 | `resilient-web-app` | Build-time defaults for web apps that survive backgrounded/idle tabs, expired sessions, and redeploys — no frozen spinners, stuck redirects, or hung actions. Fires when scaffolding a new web app/SPA, writing Server Actions, wiring auth/sessions, adding fetch/loading states, or adding SSE/WebSockets. Applied proactively, not just on review. |
+| `tdd` | Test-first loop: red → green → refactor, with the reference material that makes the tests worth keeping — what a good test is, seams (test at public boundaries, never internals), where mocks belong, and the anti-patterns. Fires when you ask to build a feature or fix a bug test-first, say "red-green-refactor," or want integration tests. Reads `CONTEXT.md` and local ADRs first so test names match the project's domain language. |
 
 ---
 
@@ -205,7 +206,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 
 | Source | Where it lives | How it replicates |
 |---|---|---|
-| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop, grilling) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
+| Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop, grilling, tdd) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
 | Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
