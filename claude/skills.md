@@ -165,16 +165,6 @@ These are the skills that operate on Claude Code itself rather than on your code
 
 ---
 
-## My own skills
-
-Skills I maintain and use across machines. Installed by cloning the source repo and symlinking into `~/.claude/skills/` so edits round-trip via `git`.
-
-| Skill | What it does |
-|---|---|
-| `nextjs-structure` | Audits / refactors a Next.js codebase toward the monorepo + App Router + tRPC + feature-modular patterns used by Cal.com, Rallly, Dub, Formbricks, Inbox Zero, and other production OSS projects. Fires when asked how to structure a Next.js app or when invoking `/nextjs-structure`. Source: [github.com/preston176/nextjs-structure](https://github.com/preston176/nextjs-structure). |
-
----
-
 ## Plugins (enabled)
 
 Plugins bundle a set of skills + agents + slash commands under one install. Enabled via `/plugin install <name>` from inside Claude Code (see [`config.md`](./config.md) for the marketplace).
@@ -208,7 +198,6 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 |---|---|---|
 | Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop, grilling, tdd) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo. Upstream sources, where the skill came from someone else's repo, are noted in `scripts/install-skills.sh` |
-| Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Own installer (impeccable) | real folder under `~/.claude/skills/`, plus hooks in `~/.claude/settings.local.json` | `npx impeccable install --global --providers claude --yes` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
