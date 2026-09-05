@@ -100,6 +100,17 @@ done
 echo "✅ Marketplace skills processed (${#MARKETPLACE_SKILLS[@]} packages)"
 
 # ---------- 2. Standalone skills (copied from claude/skills/) ----------
+#
+# These are plain folders vendored into this repo, not marketplace packages.
+# Upstream sources, for refreshing a copy later:
+#
+#   code-structure  https://github.com/michaelshimeles/skills/tree/main/code-structure
+#     refresh with:
+#       curl -sL https://raw.githubusercontent.com/michaelshimeles/skills/main/code-structure/SKILL.md \
+#         -o claude/skills/code-structure/SKILL.md
+#
+# The rest (drizzle, pdf-to-markdown, flutter-development, godot,
+# resilient-web-app) have no upstream recorded yet.
 
 mkdir -p "$SKILLS_DST"
 

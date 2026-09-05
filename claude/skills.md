@@ -54,7 +54,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | Skill | What it does |
 |---|---|
 | `fallow` | Static + runtime code-health analyzer for JS/TS. Reports quality, PR risk, unused files/exports/deps, duplication, circular deps, complexity hotspots, architecture boundary violations, feature flags, security candidates. 118 framework plugins, zero config, sub-second static analysis. Optional runtime mode merges production execution data. |
-| `code-structure` | Fires when multiple workflows duplicate the same operational logic, or when deciding what belongs in actions vs shared services. Refactoring-focused. |
+| `code-structure` | Fires when multiple workflows duplicate the same operational logic, or when deciding what belongs in actions vs shared services. Refactoring-focused. Source: [github.com/michaelshimeles/skills](https://github.com/michaelshimeles/skills/tree/main/code-structure). |
 | `simplify` | Reviews changed code for reuse, quality, efficiency. Fixes issues it finds. |
 | `review` | Reviews a pull request. |
 | `security-review` | Security review of pending changes on the current branch. |
@@ -207,7 +207,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 | Source | Where it lives | How it replicates |
 |---|---|---|
 | Marketplace (Clerk, Vercel, shadcn, fallow, Harbor, unslop, grilling, tdd) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
-| Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo |
+| Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo. Upstream sources, where the skill came from someone else's repo, are noted in `scripts/install-skills.sh` |
 | Own (nextjs-structure) | symlink under `~/.claude/skills/` pointing into `~/Code/personal/<repo>` | `git clone` the source repo, then `ln -s` into `~/.claude/skills/` |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Own installer (impeccable) | real folder under `~/.claude/skills/`, plus hooks in `~/.claude/settings.local.json` | `npx impeccable install --global --providers claude --yes` |

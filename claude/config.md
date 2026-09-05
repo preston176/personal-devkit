@@ -176,7 +176,7 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `eas-app-stores`
 
 **General dev**
-- `code-structure`
+- `code-structure` _(source: `michaelshimeles/skills`)_
 - `context7-mcp` _(installed by `npx ctx7 setup`)_
 - `create-task`
 - `drizzle`
