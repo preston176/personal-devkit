@@ -90,6 +90,23 @@ MARKETPLACE_SKILLS=(
 
   # Test-driven development (github.com/mattpocock/skills)
   "mattpocock/skills@tdd"
+
+  # Higgsfield creative suite (github.com/higgsfield-ai/skills)
+  # All of these shell out to the `higgsfield` CLI and need an account.
+  # higgsfield-generate is the entry point; the rest are specialised routers.
+  "higgsfield-ai/skills@higgsfield-generate"
+  "higgsfield-ai/skills@higgsfield-brandkit"
+  "higgsfield-ai/skills@higgsfield-marketplace-cards"
+  "higgsfield-ai/skills@higgsfield-product-photoshoot"
+  "higgsfield-ai/skills@higgsfield-soul-id"
+  "higgsfield-ai/skills@higgsfield-video-explainer"
+  "higgsfield-ai/skills@higgsfield-websites"
+  "higgsfield-ai/skills@higgsfield-youtube-thumbnail"
+
+  # Motion & design engineering (github.com/emilkowalski/skills)
+  "emilkowalski/skills@animate"
+  "emilkowalski/skills@animate-expo"
+  "emilkowalski/skills@emil-design-eng"
 )
 
 for skill in "${MARKETPLACE_SKILLS[@]}"; do
@@ -108,6 +125,14 @@ echo "✅ Marketplace skills processed (${#MARKETPLACE_SKILLS[@]} packages)"
 #     refresh with:
 #       curl -sL https://raw.githubusercontent.com/michaelshimeles/skills/main/code-structure/SKILL.md \
 #         -o claude/skills/code-structure/SKILL.md
+#
+#   landing-page-design  https://github.com/elayadesign/ai-design-skills
+#     Ships as a plain folder, not a marketplace package, so `npx skills add`
+#     cannot fetch it. Refresh with:
+#       curl -sL https://raw.githubusercontent.com/elayadesign/ai-design-skills/HEAD/skills/landing-page-design/SKILL.md \
+#         -o claude/skills/landing-page-design/SKILL.md
+#     Companion skill for redesigning an existing site (not installed here):
+#       https://github.com/elayadesign/redesign-skill
 #
 # The rest (drizzle, pdf-to-markdown, flutter-development, godot,
 # resilient-web-app) have no upstream recorded yet.
@@ -147,6 +172,17 @@ cat <<'EOF'
    • context7-mcp   → installed by `npx ctx7 setup` (run that separately;
                       it also adds the MCP server and the rule)
 
+   • higgsfield-*   → the 8 skills above are only routers; they shell out to
+                      the `higgsfield` CLI, which is a separate global install
+                      and needs an account:
+                        npm i -g @higgsfield/cli
+                        higgsfield login
+
+   • synced/        → ~/.claude/skills/synced/ holds skills synced from the
+                      claude.ai account, not from this machine. They ride with
+                      the Anthropic login, same as the claude.ai connectors in
+                      claude/config.md. Do not copy or bundle them.
+
    • screen-demo    → 454 MB (Remotion + Steel browser deps). Install only
                       if you actually need it:
                         git clone https://github.com/preston176/screen-demo-skill.git \
@@ -161,6 +197,13 @@ cat <<'EOF'
                       superpowers bundles ~14 process skills (brainstorming,
                       systematic-debugging, TDD, writing-plans, etc.).
                       pr-review-toolkit adds /review-pr + review subagents.
+
+                      mcpmarket-me is a *local directory* marketplace at
+                      ~/.claude/plugins/mcpmarket-me, not a GitHub one. It
+                      bundles the `javascript` skill and SessionStart /
+                      PostToolUse hooks. Re-add it with:
+                        /plugin marketplace add knoxgraeme/mcpmarket-plugin
+                        /plugin install mcpmarket-me
 
 EOF
 

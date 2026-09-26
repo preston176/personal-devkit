@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-08-24 from `~/.claude/`_
+_Captured 2026-08-24 from `~/.claude/`. Skills, plugins and settings refreshed 2026-09-26._
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -9,24 +9,43 @@ _Captured 2026-08-24 from `~/.claude/`_
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "model": "opus[1m]",
   "enabledPlugins": {
     "pr-review-toolkit@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": false
+    "superpowers@claude-plugins-official": false,
+    "mcpmarket-me@mcpmarket-me": true
+  },
+  "extraKnownMarketplaces": {
+    "mcpmarket-me": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/preston/.claude/plugins/mcpmarket-me"
+      }
+    }
   },
   "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "skipAutoPermissionPrompt": true,
-  "model": "sonnet"
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  }
 }
 ```
 
-Note: `superpowers` is installed but currently **disabled** (`false`) — only `pr-review-toolkit` is active. See section 5.
+Note: `superpowers` is installed but currently **disabled** (`false`); `pr-review-toolkit` and `mcpmarket-me` are active. See section 5.
+
+`extraKnownMarketplaces` points at a **local directory**, so it will not resolve on a fresh machine until that plugin is re-added (section 5). The absolute path under `/Users/preston` is machine-specific.
 
 ## 2. Global instructions (`~/.claude/CLAUDE.md`)
 
 ```markdown
 # Global preferences
+
+## Writing style
+
+- Avoid em dashes (—) in prose and generated text. Rephrase with commas, parentheses, colons, or separate sentences instead.
 
 ## Git commits and PRs
 
@@ -184,12 +203,41 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `find-skills`
 - `flutter-development`
 - `godot`
+- `grilling` + `grill-me` _(marketplace: `mattpocock/skills`)_
 - `pdf-to-markdown`
 - `resilient-web-app`
 - `screen-demo` _(separate repo — see install command below)_
 - `shadcn`
+- `tdd` _(marketplace: `mattpocock/skills`)_
 - `unslop` _(marketplace: `pstack/skills`)_
 - `web-design-guidelines`
+
+**Design & motion**
+- `impeccable` _(own CLI: `npx impeccable install --global --providers claude`; also writes hooks into `settings.local.json`)_
+- `landing-page-design` _(standalone, vendored in `claude/skills/`; source: `elayadesign/ai-design-skills`)_
+- `animate` _(marketplace: `emilkowalski/skills`)_
+- `animate-expo` _(marketplace: `emilkowalski/skills`)_
+- `emil-design-eng` _(marketplace: `emilkowalski/skills`)_
+
+**Creative & media** _(`higgsfield-ai/skills`)_
+
+These are routers over the `higgsfield` CLI, which is a separate global install
+(`npm i -g @higgsfield/cli`, then `higgsfield login`). Without it, the skills load but cannot run.
+
+- `higgsfield-generate` _(entry point: images, video, 3D, audio)_
+- `higgsfield-brandkit`
+- `higgsfield-marketplace-cards`
+- `higgsfield-product-photoshoot`
+- `higgsfield-soul-id`
+- `higgsfield-video-explainer`
+- `higgsfield-websites`
+- `higgsfield-youtube-thumbnail`
+
+**Account-synced** _(`~/.claude/skills/synced/`)_
+
+A bucket of skills synced from the claude.ai account rather than installed on this
+machine. They ride with the Anthropic login, the same way the connectors in section 3
+do, so there is nothing to replicate here and nothing to bundle. Do not copy this folder.
 
 > Replicate by copying `~/.claude/skills/` to the new machine, or re-install individually via the `find-skills` / `skill-creator` workflow. The `context7-mcp` skill is auto-installed when you run `npx ctx7 setup`.
 >
@@ -203,14 +251,20 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 
 ## 5. Plugin marketplaces
 
-Marketplace installed: **`claude-plugins-official`** (at `~/.claude/plugins/marketplaces/claude-plugins-official`).
+Marketplaces installed:
+
+| Marketplace | Source | Location |
+|---|---|---|
+| `claude-plugins-official` | github `anthropics/claude-plugins-official` | `~/.claude/plugins/marketplaces/claude-plugins-official` |
+| `mcpmarket-me` | local directory | `~/.claude/plugins/mcpmarket-me` |
 
 ### Enabled on this machine
 
 | Plugin | Version | Status | What it adds |
 |---|---|---|---|
 | `pr-review-toolkit` | — | enabled | `/review-pr` command + subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. |
-| `superpowers` | 6.1.1 | installed, **disabled** | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. Turned off via `enabledPlugins` in `settings.json` (see section 1). See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
+| `mcpmarket-me` | 0.1.0 | enabled | Bundles the `javascript` skill (core JS conventions and idioms) plus `SessionStart` / `PostToolUse` hooks that sync skills on startup and log skill invocations. Installed from a **local directory** marketplace, not GitHub. |
+| `superpowers` | 6.4.1 | installed, **disabled** | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. Turned off via `enabledPlugins` in `settings.json` (see section 1). See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
 
 ### Available in the marketplace (not necessarily enabled)
 
@@ -236,5 +290,11 @@ php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp
 /plugin marketplace add anthropics/claude-code   # adds claude-plugins-official
 /plugin install superpowers                      # process skills bundle
 /plugin install pr-review-toolkit                # /review-pr + review subagents
+
+# mcpmarket-me: the local directory above will not exist on a fresh machine,
+# so re-add it from its upstream repo instead.
+/plugin marketplace add knoxgraeme/mcpmarket-plugin
+/plugin install mcpmarket-me
+
 # ...or /plugin install <any other name> from the list above.
 ```

@@ -17,7 +17,7 @@ My personal dev environment — VS Code settings, 200 extensions, Claude Code MC
 ├── claude/                  ← everything Claude Code
 │   ├── config.md            ← MCP servers, skills, rules, plugin marketplaces
 │   ├── skills.md            ← what every installed skill does
-│   └── skills/              ← 6 standalone skills copied as-is (~90KB)
+│   └── skills/              ← 7 standalone skills copied as-is (~110KB)
 │
 ├── agent/                   ← drop-in agent prompts
 │   └── prompt.md            ← the dry-run import prompt to paste into your LLM
