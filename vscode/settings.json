@@ -335,4 +335,6 @@
     "**/.forgejo/workflows/*.yaml",
   ],
   "terminal.integrated.stickyScroll.enabled": false,
+  "python.analysis.excludeLibraryDiagnostics": true,
+  "fallow.changedSince": "security",
 }

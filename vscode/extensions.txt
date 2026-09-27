@@ -29,6 +29,8 @@ connor4312.esbuild-problem-matchers
 continue.continue
 cstrap.flask-snippets
 cstrap.python-snippets
+cweijan.dbclient-jdbc
+cweijan.vscode-database-client2
 dart-code.dart-code
 dart-code.flutter
 davidanson.vscode-markdownlint
@@ -60,6 +62,7 @@ github.codespaces
 github.github-vscode-theme
 github.vscode-github-actions
 golang.go
+google.google-antigravity
 growthjack.claude-code-usage
 gruntfuggly.todo-tree
 hbenl.vscode-test-explorer
@@ -133,7 +136,7 @@ njqdev.vscode-python-typehint
 octref.vetur
 oderwat.indent-rainbow
 openai.chatgpt
-parallelsdesktop.parallels-desktop
+openai.codex-audio
 paulober.pico-w-go
 pkief.material-icon-theme
 postman.postman-for-vscode
