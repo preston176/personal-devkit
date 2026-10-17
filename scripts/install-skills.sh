@@ -150,7 +150,31 @@ if [ -d "$SKILLS_SRC" ]; then
   echo "✅ Standalone skills copied to $SKILLS_DST"
 fi
 
-# ---------- 3. Impeccable (its own npm CLI, not the skills marketplace) ----------
+# ---------- 3. skillfish skills (repos `npx skills add` cannot index) ----------
+#
+# plurigrid/asi nests its skills under plugins/asi/skills/, so these go through
+# the skillfish CLI instead. Pass --yes or it waits on a prompt forever. It
+# installs into every agent it detects (Claude Code, Codex, Gemini, Cline, ...);
+# add --agent "Claude Code" to keep it to Claude only.
+#
+#   reverse-engineering  https://github.com/plurigrid/asi/tree/main/plugins/asi/skills/reverse-engineering
+#     Reference only: Ghidra / IDA / radare2 MCP setup notes and r2 commands.
+#     The MCP servers it describes are not installed by this script.
+
+SKILLFISH_SKILLS=(
+  "plurigrid/asi reverse-engineering"
+)
+
+for entry in "${SKILLFISH_SKILLS[@]}"; do
+  echo "  → $entry"
+  # shellcheck disable=SC2086
+  npx -y skillfish add $entry --global --yes < /dev/null \
+    || echo "    (skipped: install failed or already present)"
+done
+
+echo "✅ skillfish skills processed (${#SKILLFISH_SKILLS[@]} packages)"
+
+# ---------- 4. Impeccable (its own npm CLI, not the skills marketplace) ----------
 #
 # Ships its own installer, so `npx skills add` cannot fetch it. Two things to
 # know: `--providers claude` keeps it out of ~/.codex, ~/.cursor and ~/.gemini,
@@ -163,7 +187,7 @@ echo "🎨 Installing impeccable (design skills + anti-pattern detection)..."
 npx -y impeccable@latest install --global --providers claude --yes \
   || echo "  (skipped: install failed or already present)"
 
-# ---------- 4. Notes on special cases ----------
+# ---------- 5. Notes on special cases ----------
 
 cat <<'EOF'
 

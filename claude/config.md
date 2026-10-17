@@ -1,6 +1,6 @@
 # Claude Code Configuration Reference
 
-_Captured 2026-08-24 from `~/.claude/`. Skills, plugins and settings refreshed 2026-09-26._
+_Captured 2026-08-24 from `~/.claude/`. Skills, plugins and settings refreshed 2026-09-26; skills again 2026-10-17._
 
 ## 1. Global settings (`~/.claude/settings.json`)
 
@@ -206,6 +206,7 @@ claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
 - `grilling` + `grill-me` _(marketplace: `mattpocock/skills`)_
 - `pdf-to-markdown`
 - `resilient-web-app`
+- `reverse-engineering` _(skillfish: `plurigrid/asi`)_
 - `screen-demo` _(separate repo — see install command below)_
 - `shadcn`
 - `tdd` _(marketplace: `mattpocock/skills`)_

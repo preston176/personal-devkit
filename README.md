@@ -24,7 +24,7 @@ My personal dev environment — VS Code settings, 203 extensions, Claude Code MC
 │
 └── scripts/                 ← shell automation
     ├── install.sh           ← restore vscode/ onto a new machine
-    ├── install-skills.sh    ← install Claude Code skills (marketplace + standalone)
+    ├── install-skills.sh    ← install Claude Code skills (marketplace + skillfish + standalone)
     └── export.sh            ← snapshot the live VS Code state back into vscode/
 ```
 
@@ -117,7 +117,7 @@ The same prompt lives in [`agent/prompt.md`](./agent/prompt.md) if you want a pe
 git clone https://github.com/preston176/personal-devkit.git
 cd personal-devkit
 ./scripts/install.sh              # settings, keybindings, extensions
-./scripts/install-skills.sh       # marketplace skills (npx skills add) + standalone
+./scripts/install-skills.sh       # marketplace skills (npx skills add) + skillfish + standalone
 npx ctx7 setup                    # Context7 MCP + skill + rule (handles API key)
 ```
 

@@ -40,6 +40,7 @@ Walk through these in order, confirming after each:
 1. Back up existing `settings.json` and `keybindings.json` to `*.backup.json`.
 2. Run `./scripts/install.sh` (settings, keybindings, extensions).
 3. Run `./scripts/install-skills.sh` (marketplace skills via `npx skills add`,
+   skillfish skills via `npx skillfish add`,
    plus copying the 7 standalone skills from `claude/skills/` into
    `~/.claude/skills/`). Skips `context7-mcp` and `screen-demo` — see the
    script's footer notes.

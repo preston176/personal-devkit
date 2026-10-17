@@ -58,6 +58,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | `simplify` | Reviews changed code for reuse, quality, efficiency. Fixes issues it finds. |
 | `review` | Reviews a pull request. |
 | `security-review` | Security review of pending changes on the current branch. |
+| `reverse-engineering` | Binary analysis reference: setup notes for the Ghidra (GhidrAssistMCP, GhidraMCP), IDA Pro, and radare2 MCP servers, step-by-step workflows for malware triage, vuln research, and CTF binaries, plus an r2 / Ghidra headless cheat sheet. Fires when you ask to disassemble, decompile, or analyze a binary. Docs only: the MCP servers and tools (`brew install radare2`, Ghidra) are separate installs. Source: [github.com/plurigrid/asi](https://github.com/plurigrid/asi/tree/main/plugins/asi/skills/reverse-engineering), installed via `skillfish`. |
 | `resilient-web-app` | Build-time defaults for web apps that survive backgrounded/idle tabs, expired sessions, and redeploys — no frozen spinners, stuck redirects, or hung actions. Fires when scaffolding a new web app/SPA, writing Server Actions, wiring auth/sessions, adding fetch/loading states, or adding SSE/WebSockets. Applied proactively, not just on review. |
 | `tdd` | Test-first loop: red → green → refactor, with the reference material that makes the tests worth keeping — what a good test is, seams (test at public boundaries, never internals), where mocks belong, and the anti-patterns. Fires when you ask to build a feature or fix a bug test-first, say "red-green-refactor," or want integration tests. Reads `CONTEXT.md` and local ADRs first so test names match the project's domain language. |
 
@@ -224,6 +225,7 @@ This repo gives you two install paths:
 # Or selectively, by source
 npx skills add clerk/skills@clerk-nextjs-patterns -g -y   # marketplace
 cp -R claude/skills/landing-page-design ~/.claude/skills/   # standalone (in-repo)
+npx -y skillfish add plurigrid/asi reverse-engineering --global --yes   # skillfish
 ```
 
 Find new skills via the `find-skills` skill inside Claude Code, or browse
@@ -235,6 +237,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 |---|---|---|
 | Marketplace (Clerk, Vercel, Expo, shadcn, fallow, Harbor, unslop, grilling, tdd, Higgsfield, emilkowalski) | symlink under `~/.claude/skills/` pointing into `~/.agents/skills/` | `npx skills add <owner/repo@skill> -g -y` |
 | Standalone (drizzle, pdf-to-markdown, code-structure, flutter-development, godot, resilient-web-app, landing-page-design) | real folder under `~/.claude/skills/` | copied wholesale into `claude/skills/` in this repo. Upstream sources, where the skill came from someone else's repo, are noted in `scripts/install-skills.sh` |
+| skillfish (reverse-engineering) | real folder under `~/.claude/skills/` with a `.skillfish.json` pin, also copied into `~/.codex`, `~/.gemini`, `~/.cline`, `~/.qwen`, `~/.github` | `npx -y skillfish add <owner/repo> <skill> --global --yes` (for repos that nest skills where `npx skills` can't find them) |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Own installer (impeccable) | real folder under `~/.claude/skills/`, plus hooks in `~/.claude/settings.local.json` | `npx impeccable install --global --providers claude --yes` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
