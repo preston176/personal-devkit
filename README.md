@@ -1,6 +1,6 @@
 # personal-devkit
 
-My personal dev environment — VS Code settings, 203 extensions, Claude Code MCP servers, skills, plugins, and rules. Clone and feel at home on any machine in minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
+My personal dev environment — VS Code settings, 203 extensions, Claude Code MCP servers, skills, plugins, and rules, plus three iTerm2 profiles with isolated CLI logins. Clone and feel at home on any machine in minutes. Two ways in: paste a prompt into an AI agent and let it walk through the import, or run the shell scripts the old-fashioned way.
 
 ## Folder layout
 
@@ -19,13 +19,19 @@ My personal dev environment — VS Code settings, 203 extensions, Claude Code MC
 │   ├── skills.md            ← what every installed skill does
 │   └── skills/              ← 7 standalone skills copied as-is (~110KB)
 │
+├── iterm2/                  ← iTerm2 profiles with isolated CLI logins (macOS)
+│   ├── cli-profiles.json    ← the 3 profiles (work, work - preston, personal)
+│   ├── env.zsh              ← per-profile env: where each CLI keeps its login
+│   └── sync-mcp.py          ← mirrors MCP servers from "work" into the other two
+│
 ├── agent/                   ← drop-in agent prompts
 │   └── prompt.md            ← the dry-run import prompt to paste into your LLM
 │
 └── scripts/                 ← shell automation
     ├── install.sh           ← restore vscode/ onto a new machine
     ├── install-skills.sh    ← install Claude Code skills (marketplace + skillfish + standalone)
-    └── export.sh            ← snapshot the live VS Code state back into vscode/
+    ├── install-iterm.sh     ← set up the iTerm2 profiles (supports --dry-run)
+    └── export.sh            ← snapshot the live VS Code + iTerm2 state back into the repo
 ```
 
 Each top-level folder is single-purpose, so you can grep or symlink whichever half you care about. New to Claude Code skills? Start with [`claude/skills.md`](./claude/skills.md) — it walks every one I have, grouped by purpose, with the trigger phrase that fires it.
@@ -58,7 +64,8 @@ They ride with the account; respect whatever the account owner has set up.
 Repo layout:
 - vscode/{settings.json, keybindings.json, extensions.txt}
 - claude/{config.md, skills.md}
-- scripts/{install.sh, export.sh}
+- iterm2/{env.zsh, sync-mcp.py, cli-profiles.json} (macOS only)
+- scripts/{install.sh, install-iterm.sh, export.sh}
 - agent/prompt.md, CLAUDE.md, README.md
 
 Steps:
@@ -84,10 +91,13 @@ Steps:
    - Check ~/.claude/skills/<name>/ for each skill listed in claude/skills.md.
    - Check ~/.claude/rules/context7.md.
    - Check ~/.claude/plugins/marketplaces/claude-plugins-official.
+   - macOS only: run `./scripts/install-iterm.sh --dry-run` (prints what it
+     would change, touches nothing) for the iTerm2 profiles delta.
 
 4. Produce a single report with: OS + paths, backup commands, per-file diff
    summaries, extensions delta, MCP delta (machine-scoped only — note the
-   claude.ai exclusion), skills delta, rules/plugin delta, and the ordered
+   claude.ai exclusion), skills delta, rules/plugin delta, iTerm2 profiles
+   delta, and the ordered
    apply plan. Mark whether Composio's `/mcp` OAuth would be needed. Do
    NOT include any step that touches claude.ai connectors.
 
@@ -118,10 +128,29 @@ git clone https://github.com/preston176/personal-devkit.git
 cd personal-devkit
 ./scripts/install.sh              # settings, keybindings, extensions
 ./scripts/install-skills.sh       # marketplace skills (npx skills add) + skillfish + standalone
+./scripts/install-iterm.sh        # iTerm2 profiles with isolated logins (macOS, try --dry-run first)
 npx ctx7 setup                    # Context7 MCP + skill + rule (handles API key)
 ```
 
 Then open [`claude/config.md`](./claude/config.md) and run the `claude mcp add` block for any remaining non-claude.ai connectors (Composio + local stdio). OAuth into them via `/mcp` inside Claude Code.
+
+## iTerm2 profiles
+
+Three profiles, each with its own CLI logins, set up by `./scripts/install-iterm.sh`:
+
+| Profile | Logins | Claude chat history |
+|---|---|---|
+| work | the normal home-directory config | `~/.claude` |
+| work - preston | isolated, under `~/.cli-profiles/work-preston/` | shared with work |
+| personal | isolated, under `~/.cli-profiles/personal/` | its own |
+
+Isolated logins cover Claude Code, Codex, gh (and git over HTTPS through it), gcloud, Vercel, npm, Stripe and anything else that keeps its config under `XDG_CONFIG_HOME`. Shell history is per profile too, and the prompt shows `[profile]`.
+
+All three share `CLAUDE.md`, rules, skills, settings, plugins and MCP servers. MCP servers live in `~/.claude.json` next to the account login, so they can't be linked: instead, `claude` in an isolated profile copies them in from "work" before every launch, and `claude mcp add/remove` there edits the shared list.
+
+The installer is idempotent. Anything real it finds where a shared link should go is moved to `<name>.pre-devkit`, never deleted. Git identities are left blank on purpose (this repo is public); it prints the commands to set them. Each profile still needs its own logins: `claude`, `gh auth login`, `codex login`, `gcloud auth login`, `vercel login`.
+
+Still shared across profiles: `~/.ssh`, browser sessions, and desktop apps. To add or rename a profile, edit `ISOLATED_PROFILES` / `SHARE_HISTORY` in the script and `iterm2/cli-profiles.json`.
 
 ## Snapshot your changes back into the repo
 

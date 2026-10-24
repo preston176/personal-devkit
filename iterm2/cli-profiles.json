@@ -1,0 +1,67 @@
+{
+  "Profiles": [
+    {
+      "Name": "work",
+      "Guid": "17635bb8-fe51-5547-9cbf-d0173f2bdb52",
+      "Dynamic Profile Parent Name": "Default",
+      "Custom Command": "Yes",
+      "Command": "/usr/bin/env CLI_PROFILE=work /bin/zsh -l",
+      "Custom Directory": "Yes",
+      "Working Directory": "__HOME__/Code/work",
+      "Badge Text": "work",
+      "Use Tab Color": true,
+      "Tab Color": {
+        "Red Component": 0.35,
+        "Green Component": 0.55,
+        "Blue Component": 0.85,
+        "Color Space": "sRGB",
+        "Alpha Component": 1
+      },
+      "Tags": [
+        "cli-profiles"
+      ]
+    },
+    {
+      "Name": "work - preston",
+      "Guid": "b59dbfd7-7d46-5423-91ea-806c6bea9bf0",
+      "Dynamic Profile Parent Name": "Default",
+      "Custom Command": "Yes",
+      "Command": "/usr/bin/env CLI_PROFILE=work-preston /bin/zsh -l",
+      "Custom Directory": "Yes",
+      "Working Directory": "__HOME__/Code/work",
+      "Badge Text": "work - preston",
+      "Use Tab Color": true,
+      "Tab Color": {
+        "Red Component": 0.85,
+        "Green Component": 0.62,
+        "Blue Component": 0.3,
+        "Color Space": "sRGB",
+        "Alpha Component": 1
+      },
+      "Tags": [
+        "cli-profiles"
+      ]
+    },
+    {
+      "Name": "personal",
+      "Guid": "779ae227-9811-5804-8571-63da21f6f928",
+      "Dynamic Profile Parent Name": "Default",
+      "Custom Command": "Yes",
+      "Command": "/usr/bin/env CLI_PROFILE=personal /bin/zsh -l",
+      "Custom Directory": "Yes",
+      "Working Directory": "__HOME__/Code/personal",
+      "Badge Text": "personal",
+      "Use Tab Color": true,
+      "Tab Color": {
+        "Red Component": 0.36,
+        "Green Component": 0.7,
+        "Blue Component": 0.55,
+        "Color Space": "sRGB",
+        "Alpha Component": 1
+      },
+      "Tags": [
+        "cli-profiles"
+      ]
+    }
+  ]
+}

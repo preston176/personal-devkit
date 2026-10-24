@@ -10,7 +10,8 @@ Unless the user has explicitly said "apply" or "go ahead and install," treat
 every request to import this repo as a **dry run**:
 
 - Read files only. Do not modify anything outside this repo.
-- Do not run `scripts/install.sh`, `code --install-extension`,
+- Do not run `scripts/install.sh`, `scripts/install-iterm.sh` (its `--dry-run`
+  mode is fine), `code --install-extension`,
   `claude mcp add`, `npx ctx7 setup`, or `/mcp` OAuth flows.
 - Do not authenticate to any third party (claude.ai connectors, Composio,
   Context7, etc.).
@@ -29,8 +30,10 @@ If a user pastes it, follow it verbatim.
 vscode/    settings.json, keybindings.json, extensions.txt — overwritten on apply
 claude/    config.md (MCP / skills / rules / plugins ref), skills.md (skill tour),
            skills/ (7 standalone skill folders bundled in-repo)
+iterm2/    cli-profiles.json, env.zsh, sync-mcp.py — iTerm2 profiles with isolated CLI logins (macOS)
 agent/     prompt.md (the dry-run prompt)
-scripts/   install.sh (VS Code), install-skills.sh (Claude skills), export.sh
+scripts/   install.sh (VS Code), install-skills.sh (Claude skills),
+           install-iterm.sh (iTerm2 profiles, has --dry-run), export.sh
 ```
 
 ## When the user says "apply"
@@ -51,6 +54,10 @@ Walk through these in order, confirming after each:
    terraform, firebase, excalidraw). For Composio, guide the user through
    `/mcp` OAuth. **Do not** add the claude.ai connectors — they ride with
    the Anthropic account.
+6. macOS only: run `./scripts/install-iterm.sh --dry-run`, show the output,
+   then run it for real. Afterwards, remind the user to set each isolated
+   profile's git identity (the script prints the commands) and to log in
+   per profile.
 
 Each step has side effects; confirm before each.
 
