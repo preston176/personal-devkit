@@ -29,8 +29,7 @@ account on their own; respect whatever the account owner has already set up.
 Repo layout:
 - vscode/{settings.json, keybindings.json, extensions.txt}
 - claude/{config.md, skills.md}
-- iterm2/{env.zsh, sync-mcp.py, cli-profiles.json} (macOS only)
-- scripts/{install.sh, install-iterm.sh, export.sh}
+- scripts/{install.sh, export.sh}
 - agent/prompt.md, CLAUDE.md, README.md
 
 Steps:
@@ -58,8 +57,6 @@ Steps:
    - Check whether `~/.claude/rules/context7.md` exists.
    - Check whether `~/.claude/plugins/marketplaces/claude-plugins-official`
      exists.
-   - macOS only: run `./scripts/install-iterm.sh --dry-run` (it prints what it
-     would change and touches nothing) to see the iTerm2 profile delta.
 
 4. Produce a single report with these sections:
 
@@ -76,7 +73,6 @@ Steps:
    g. Skills delta: missing list + how to copy them (`cp -R` from your machine
       or re-install via `find-skills`)
    h. Rules / plugin marketplaces delta
-   i. iTerm2 profiles delta (macOS only), from the --dry-run output
    i. Apply plan: the ordered command list I would run if I approved, including
       `./scripts/install.sh`, `npx ctx7 setup`, and any `claude mcp add` lines
       for servers ctx7 doesn't cover (Composio + local stdio). Mark whether

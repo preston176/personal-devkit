@@ -38,15 +38,3 @@ code --list-extensions | sort > "$VSCODE_DST/extensions.txt"
 echo "✅ extensions.txt exported ($(wc -l < "$VSCODE_DST/extensions.txt" | xargs) extensions)"
 
 echo "🎉 VS Code setup exported successfully!"
-
-# Export iTerm2 CLI profiles (macOS only; skipped if never installed)
-ITERM_DST="$REPO_ROOT/iterm2"
-DYNAMIC_PROFILES="$HOME/Library/Application Support/iTerm2/DynamicProfiles/cli-profiles.json"
-if [[ "$OSTYPE" == "darwin"* && -f "$HOME/.cli-profiles/env.zsh" ]]; then
-  echo "🖥️  Exporting iTerm2 CLI profiles..."
-  mkdir -p "$ITERM_DST"
-  cp "$HOME/.cli-profiles/env.zsh" "$ITERM_DST/env.zsh"
-  cp "$HOME/.cli-profiles/sync-mcp.py" "$ITERM_DST/sync-mcp.py"
-  [ -f "$DYNAMIC_PROFILES" ] && sed "s|$HOME|__HOME__|g" "$DYNAMIC_PROFILES" > "$ITERM_DST/cli-profiles.json"
-  echo "✅ iterm2/ exported (env.zsh, sync-mcp.py, cli-profiles.json)"
-fi
