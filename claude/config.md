@@ -299,3 +299,93 @@ php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp
 
 # ...or /plugin install <any other name> from the list above.
 ```
+
+## 6. Third-party model launchers
+
+_Added 2026-11-03._ Two zsh functions in `~/.zshrc` that start Claude Code on a non-Anthropic model. Everything they set is scoped to that one command, so plain `claude` keeps using the claude.ai subscription. Inside each session the `/model` picker shows only that provider's model, and every alias (opus, sonnet, haiku, fable) maps to it so background tasks and subagents never request a Claude model.
+
+API keys are **not** in this repo. Each launcher reads its key from a `chmod 600` file and refuses to start if the file is missing or empty (with an empty token Claude Code would fall back to the claude.ai login and send it to the third party).
+
+| Command | Provider | Model | Key file | How it connects |
+|---|---|---|---|---|
+| `claude-morph` | Morph | `morph-dsv41flash-abliterated` | `~/.config/morph/api_key` | Morph's Anthropic-compatible endpoint, direct |
+| `claude-venice` | Venice | `deepseek-v4-1-flash-1017-uncensored` | `~/.config/venice/api_key` | Local LiteLLM proxy on `127.0.0.1:4141` (Venice is OpenAI-format only) |
+
+`morph-dsv41flash-abliterated` needs Morph account approval (`403` without it); the request form is at `GET/POST https://www.morphllm.com/api/privileged-access`.
+
+### Replication
+
+```bash
+# Keys (paste your own; never commit them)
+mkdir -p ~/.config/morph ~/.config/venice
+(umask 077; printf '%s' 'sk-...' > ~/.config/morph/api_key)
+(umask 077; printf '%s' 'VENICE_INFERENCE_KEY_...' > ~/.config/venice/api_key)
+
+# LiteLLM proxy for claude-venice
+uv tool install 'litellm[proxy]'
+
+# Optional: Morph CLI. Its macOS build ships with a broken ad-hoc signature,
+# so macOS kills it on launch until it is re-signed locally.
+curl -fsSL https://www.morphllm.com/install.sh | bash   # fails its own --version check
+codesign --force --sign - ~/.local/bin/morph && morph --version
+morph token set --api-key "$(cat ~/.config/morph/api_key)"
+```
+
+`~/.config/venice/litellm.yaml`:
+
+```yaml
+model_list:
+  - model_name: deepseek-v4-1-flash-1017-uncensored
+    litellm_params:
+      model: openai/deepseek-v4-1-flash-1017-uncensored
+      api_base: https://api.venice.ai/api/v1
+      api_key: os.environ/VENICE_API_KEY
+litellm_settings:
+  drop_params: true  # Claude Code sends Anthropic-only params Venice would reject
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+```
+
+Append to `~/.zshrc`:
+
+```zsh
+# Claude Code on Morph. Env is scoped to this one command; plain `claude` is untouched.
+# Key guard matters: with an empty token Claude Code would fall back to your claude.ai login and send it to Morph.
+claude-morph() {
+  local m="morph-dsv41flash-abliterated" key="$(cat ~/.config/morph/api_key 2>/dev/null)"
+  : ${key:?missing ~/.config/morph/api_key}
+  ANTHROPIC_BASE_URL="https://api.morphllm.com" \
+  ANTHROPIC_AUTH_TOKEN="$key" \
+  ANTHROPIC_MODEL="$m" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="$m" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="$m" \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL="$m" \
+  ANTHROPIC_DEFAULT_FABLE_MODEL="$m" \
+  claude --settings "{\"modelPicker\":{\"replaceBuiltInOptions\":true,\"options\":[{\"model\":\"$m\",\"label\":\"DeepSeek V4.1 Flash Uncensored (Morph)\"}]}}" "$@"
+}
+
+# Claude Code on Venice via a local LiteLLM proxy (Venice has no Anthropic endpoint).
+# Same gating as claude-morph: env is scoped to this command, proxy dies when claude exits.
+# shortcut: fixed port 4141, so one claude-venice session at a time; pick a free port if you need more.
+claude-venice() {
+  local m="deepseek-v4-1-flash-1017-uncensored" port=4141 key="$(cat ~/.config/venice/api_key 2>/dev/null)"
+  : ${key:?missing ~/.config/venice/api_key}
+  local mk="sk-$(openssl rand -hex 16)"
+  VENICE_API_KEY="$key" LITELLM_MASTER_KEY="$mk" \
+    litellm --config ~/.config/venice/litellm.yaml --host 127.0.0.1 --port $port >~/.config/venice/proxy.log 2>&1 &!
+  local pid=$!
+  trap "kill $pid 2>/dev/null" EXIT
+  until curl -sf "http://127.0.0.1:$port/health/liveliness" >/dev/null; do
+    kill -0 $pid 2>/dev/null || { echo "proxy failed, see ~/.config/venice/proxy.log" >&2; return 1; }
+    sleep 0.5
+  done
+  ANTHROPIC_BASE_URL="http://127.0.0.1:$port" \
+  ANTHROPIC_AUTH_TOKEN="$mk" \
+  ANTHROPIC_MODEL="$m" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="$m" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="$m" \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL="$m" \
+  ANTHROPIC_DEFAULT_FABLE_MODEL="$m" \
+  claude --settings "{\"modelPicker\":{\"replaceBuiltInOptions\":true,\"options\":[{\"model\":\"$m\",\"label\":\"DeepSeek V4.1 Flash 1017 Uncensored (Venice)\"}]}}" "$@"
+}
+```

@@ -15,7 +15,7 @@ My personal dev environment — VS Code settings, 203 extensions, Claude Code MC
 │   └── extensions.txt       ← every extension I use (203 of them)
 │
 ├── claude/                  ← everything Claude Code
-│   ├── config.md            ← MCP servers, skills, rules, plugin marketplaces
+│   ├── config.md            ← MCP servers, skills, rules, plugins, model launchers
 │   ├── skills.md            ← what every installed skill does
 │   └── skills/              ← 7 standalone skills copied as-is (~110KB)
 │
