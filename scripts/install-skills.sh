@@ -109,7 +109,7 @@ MARKETPLACE_SKILLS=(
   "emilkowalski/skills@emil-design-eng"
 
   # REA reverse engineering (github.com/morluto/rea)
-  # Instructions only. The REA MCP server is a separate `npx rea-agents@latest setup`.
+  # Instructions only. Section 5 below sets up the REA MCP server + Ghidra.
   "morluto/rea@reverse-engineer-anything"
 )
 
@@ -191,7 +191,58 @@ echo "🎨 Installing impeccable (design skills + anti-pattern detection)..."
 npx -y impeccable@latest install --global --providers claude --yes \
   || echo "  (skipped: install failed or already present)"
 
-# ---------- 5. Notes on special cases ----------
+# ---------- 5. REA MCP server + Ghidra (macOS arm64 only) ----------
+#
+# reverse-engineer-anything (marketplace list above) is instructions only. This
+# registers the REA MCP server with Ghidra 12.1.4 + JDK 21, the pair REA is
+# verified on. Official Ghidra zips ship no macOS decompiler, so buildNatives
+# compiles one (needs Xcode). First run downloads ~570 MB; later runs skip
+# whatever is already in place. Walkthrough: claude/config.md, "REA + Ghidra".
+# Each step uses `|| return 1` because `set -e` is off inside a function
+# called from `||`.
+
+GHIDRA_VERSION="12.1.4"
+GHIDRA_URL="https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${GHIDRA_VERSION}_build/ghidra_${GHIDRA_VERSION}_PUBLIC_20260921.zip"
+GHIDRA_SHA256="ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db"
+
+setup_rea_ghidra() {
+  export GHIDRA_INSTALL_DIR="$HOME/Applications/ghidra_${GHIDRA_VERSION}_PUBLIC"
+  brew list openjdk@21 >/dev/null 2>&1 || brew install openjdk@21 || return 1
+  export JAVA_HOME="$(brew --prefix openjdk@21)/libexec/openjdk.jdk/Contents/Home"
+
+  if [ ! -d "$GHIDRA_INSTALL_DIR" ]; then
+    local tmp
+    tmp="$(mktemp -d)" || return 1
+    curl -fL -C - --retry 3 -o "$tmp/ghidra.zip" "$GHIDRA_URL" \
+      && echo "$GHIDRA_SHA256  $tmp/ghidra.zip" | shasum -a 256 -c \
+      && unzip -q "$tmp/ghidra.zip" -d "$tmp" \
+      && mkdir -p "$HOME/Applications" \
+      && mv "$tmp/ghidra_${GHIDRA_VERSION}_PUBLIC" "$GHIDRA_INSTALL_DIR"
+    local status=$?
+    rm -rf "$tmp"
+    [ "$status" -eq 0 ] || return 1
+  fi
+
+  [ -x "$GHIDRA_INSTALL_DIR/Ghidra/Features/Decompiler/build/os/mac_arm_64/decompile" ] \
+    || (cd "$GHIDRA_INSTALL_DIR/support/gradle" && ./gradlew buildNatives) \
+    || return 1
+
+  # Records both paths in the rea entry's env in ~/.claude.json (backs it up first).
+  npx -y rea-agents@latest setup --client claude_code --skill=false --yes < /dev/null
+}
+
+if [ "$(uname -s)/$(uname -m)" != "Darwin/arm64" ]; then
+  echo "🔬 Skipping REA + Ghidra (scripted for macOS arm64 only; see claude/config.md)"
+elif ! xcode-select -p >/dev/null 2>&1; then
+  echo "🔬 Skipping REA + Ghidra (needs Xcode tools: xcode-select --install)"
+else
+  echo "🔬 Setting up REA MCP server + Ghidra ${GHIDRA_VERSION}..."
+  setup_rea_ghidra \
+    && echo "✅ REA + Ghidra ready (restart Claude Code to load the tools)" \
+    || echo "  (skipped: REA + Ghidra setup failed; see claude/config.md)"
+fi
+
+# ---------- 6. Notes on special cases ----------
 
 cat <<'EOF'
 

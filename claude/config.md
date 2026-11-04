@@ -168,6 +168,7 @@ npx -y rea-agents@latest setup --client claude_code --skill=false --dry-run   # 
 npx -y rea-agents@latest setup --client claude_code --skill=false --yes
 ```
 
+`scripts/install-skills.sh` runs all of this (macOS arm64 only).
 Upgrading Ghidra means a fresh unzip, a rebuild of the natives, and a setup
 rerun with the new `GHIDRA_INSTALL_DIR`.
 

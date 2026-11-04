@@ -42,8 +42,10 @@ Walk through these in order, confirming after each:
 3. Run `./scripts/install-skills.sh` (marketplace skills via `npx skills add`,
    skillfish skills via `npx skillfish add`,
    plus copying the 7 standalone skills from `claude/skills/` into
-   `~/.claude/skills/`). Skips `context7-mcp` and `screen-demo` — see the
-   script's footer notes.
+   `~/.claude/skills/`). On macOS arm64 it also sets up the REA MCP server
+   with Ghidra 12.1.4 + JDK 21 (~570 MB download, Xcode build, writes the
+   `rea` entry into `~/.claude.json`). Skips `context7-mcp` and `screen-demo` (see the
+   script's footer notes).
 4. Run `npx ctx7 setup` (installs Context7 MCP with API key + companion
    `context7-mcp` skill + rule).
 5. Run the `claude mcp add` lines from `claude/config.md` for any **non-claude.ai**
