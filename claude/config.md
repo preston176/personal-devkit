@@ -98,7 +98,7 @@ Note: `superpowers` is installed but currently **disabled** (`false`); `pr-revie
 | terraform | `docker run -i --rm hashicorp/terraform-mcp-server` |
 | firebase | `npx -y firebase-tools experimental:mcp` |
 | excalidraw | `npx -y @scofieldfree/excalidraw-mcp` |
-| rea | `npx -y rea-agents@6.8.0 mcp` (needs Node 22.23.4+, 24.22.1+ or 26.12.1+; Ghidra / JADX engines are separate installs) |
+| rea | `npx -y rea-agents@6.8.0 mcp` (needs Node 22.23.4+, 24.22.1+ or 26.12.1+; native decompilation needs Ghidra, see [REA + Ghidra](#rea--ghidra-macos-arm64); JADX not set up) |
 
 ### Replication commands
 
@@ -135,11 +135,41 @@ claude mcp add playwright      -- npx -y @automatalabs/mcp-server-playwright
 claude mcp add terraform       -- docker run -i --rm hashicorp/terraform-mcp-server
 claude mcp add firebase        -- npx -y firebase-tools experimental:mcp
 claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
-# rea: let its own setup write the entry (backs up ~/.claude.json, keeps the skills.sh skill)
+# rea: let its own setup write the entry (backs up ~/.claude.json, keeps the skills.sh skill).
+# Export GHIDRA_INSTALL_DIR + JAVA_HOME first so it records them; see REA + Ghidra below.
 npx -y rea-agents@latest setup --client claude_code --skill=false
 
 # Then run /mcp inside Claude Code to OAuth into each remote connector.
 ```
+
+### REA + Ghidra (macOS arm64)
+
+REA's native decompilation runs through an existing Ghidra install. Neither REA
+nor its setup installs Ghidra or Java. REA is verified with Ghidra 12.1.4 on
+JDK 21 (Homebrew's `ghidra` formula is 12.2, which needs JDK 25). The official
+zip ships no macOS decompiler, so it has to be built locally (needs Xcode).
+
+```bash
+brew install openjdk@21                       # keg-only, leaves the default java alone
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
+
+# Ghidra 12.1.4, checksum from the GitHub release page
+curl -fL -C - -o /tmp/ghidra.zip \
+  https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip
+echo "ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db  /tmp/ghidra.zip" | shasum -a 256 -c
+unzip -q /tmp/ghidra.zip -d ~/Applications && rm /tmp/ghidra.zip
+export GHIDRA_INSTALL_DIR=$HOME/Applications/ghidra_12.1.4_PUBLIC
+
+# Build the mac_arm_64 decompiler, sleigh and lzfse (~1 min, lands in */build/os/mac_arm_64/)
+(cd "$GHIDRA_INSTALL_DIR/support/gradle" && ./gradlew buildNatives)
+
+# Writes both paths into the rea entry's env in ~/.claude.json; restart Claude Code after
+npx -y rea-agents@latest setup --client claude_code --skill=false --dry-run   # check the ghidra provider is available
+npx -y rea-agents@latest setup --client claude_code --skill=false --yes
+```
+
+Upgrading Ghidra means a fresh unzip, a rebuild of the natives, and a setup
+rerun with the new `GHIDRA_INSTALL_DIR`.
 
 ## 4. Skills (`~/.claude/skills/`)
 
