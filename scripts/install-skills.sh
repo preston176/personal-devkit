@@ -192,6 +192,17 @@ echo "🎨 Installing impeccable (design skills + anti-pattern detection)..."
 npx -y impeccable@latest install --global --providers claude --yes \
   || echo "  (skipped: install failed or already present)"
 
+# ---------- 4b. UI/UX Pro Max suite (its own npm CLI) ----------
+#
+# github.com/nextlevelbuilder/ui-ux-pro-max-skill. One command installs seven
+# skills into ~/.claude/skills: ui-ux-pro-max, design, banner-design, brand,
+# design-system, slides, ui-styling. Without --global it writes into the
+# current project's .claude/skills instead.
+
+echo "🎨 Installing UI/UX Pro Max suite (7 design skills)..."
+npx -y -p ui-ux-pro-max-cli uipro init --ai claude --global < /dev/null \
+  || echo "  (skipped: install failed or already present)"
+
 # ---------- 5. REA MCP server + Ghidra (macOS arm64 only) ----------
 #
 # reverse-engineer-anything (marketplace list above) is instructions only. This
@@ -271,12 +282,21 @@ cat <<'EOF'
                       Then copy .env.example → .env and add your STEEL_API_KEY.
 
    • Plugins        → installed inside Claude Code, not via shell. Run:
-                        /plugin marketplace add anthropics/claude-code
+                        /plugin marketplace add anthropics/claude-plugins-official
                         /plugin install superpowers
                         /plugin install pr-review-toolkit
                       superpowers bundles ~14 process skills (brainstorming,
                       systematic-debugging, TDD, writing-plans, etc.).
                       pr-review-toolkit adds /review-pr + review subagents.
+
+                      More plugins (marketplace, then install):
+                        /plugin marketplace add DietrichGebert/ponytail
+                        /plugin install ponytail@ponytail
+                        /plugin marketplace add neondatabase/agent-skills
+                        /plugin install neon-postgres@neon
+                        /plugin marketplace add paper-design/agent-plugins
+                        /plugin install paper-desktop@paper   (needs the Paper app)
+                        /plugin install clangd-lsp@claude-plugins-official
 
                       mcpmarket-me is a *local directory* marketplace at
                       ~/.claude/plugins/mcpmarket-me, not a GitHub one. It

@@ -97,6 +97,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | Skill | What it does |
 |---|---|
 | `drizzle` | Drizzle ORM schema and migrations. Fires when editing files under `src/database/schemas/*` or defining tables / migrations. |
+| `neon:*` | Seven skills from the `neon-postgres` plugin (`neon`, `neon-postgres`, `neon-auth`, `neon-functions`, `neon-object-storage`, `neon-realtime`, `neon-ai-gateway`): Neon serverless Postgres, Managed Better Auth, Realtime, Object Storage, Functions, the Data API and AI Gateway. The plugin also adds Neon's MCP server. See [Plugins](#plugins-enabled). |
 
 ---
 
@@ -157,6 +158,22 @@ The official Expo skill family. Framework skills are open source; the `eas-*` sk
 | `animate-expo` | The same discipline for React Native and Expo, where the constraints differ: which thread the animation runs on, spring versus timing, how a gesture hands off, how it degrades on a slow device. Uses Reanimated, Gesture Handler, Expo Router, and expo-haptics. Reach for this over `animate` in any RN app. |
 | `emil-design-eng` | The taste layer behind the other two. Emil Kowalski's philosophy on UI polish, component design, and the invisible details that separate software that works from software that feels good. Read it when you want judgement, not a recipe. |
 
+### UI/UX Pro Max suite (`nextlevelbuilder/ui-ux-pro-max-skill`)
+
+Seven skills installed together by the `uipro` CLI. `ui-ux-pro-max` is the core;
+the other six are ClaudeKit design skills that ship in the same repo. The logo,
+icon and CIP generators in `design` call Gemini and need `GEMINI_API_KEY`.
+
+| Skill | What it does |
+|---|---|
+| `ui-ux-pro-max` | Design intelligence for web, mobile and desktop UI, backed by searchable local data: 79 styles, 192 product palettes, 74 font pairings, 119 UX guidelines, 25 chart types and 22 stacks. Fires when designing, building, reviewing or fixing interfaces. |
+| `design` | The umbrella skill: brand identity, design tokens, UI styling, logo generation (55 styles), corporate identity mockups, HTML presentations, banners, SVG icons and social images. |
+| `banner-design` | Banners for social, ads, website heroes and print, with several art-direction options per request. |
+| `brand` | Brand voice, visual identity, messaging frameworks and consistency checks across branded content. |
+| `design-system` | Three-layer tokens (primitive, semantic, component), CSS variables, spacing and type scales, component specs. |
+| `slides` | Strategic HTML presentations with Chart.js, design tokens and copywriting formulas. |
+| `ui-styling` | shadcn/ui + Tailwind interfaces: accessible components, theming, dark mode, responsive layouts, canvas visuals. |
+
 ---
 
 ## Creative & media generation (`higgsfield-ai/skills`)
@@ -212,6 +229,10 @@ Plugins bundle a set of skills + agents + slash commands under one install. Enab
 | `superpowers` | A ~14-skill process pack that changes how the agent works, not just what it knows. Includes `brainstorming` (mandatory before creative work), `systematic-debugging` (mandatory for any bug/test failure), `test-driven-development`, `writing-plans` + `executing-plans` + `subagent-driven-development`, `verification-before-completion`, `requesting-code-review` + `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers` (the entry-point rule). If you install one plugin, install this one. |
 | `pr-review-toolkit` | Adds the `/review-pr` slash command plus a fleet of subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. Use before opening or merging a PR. |
 | `mcpmarket-me` | Bundles the `javascript` skill (core JS conventions, idioms, and modern practices, with references on async, functions, modules, objects and arrays, and JSDoc) plus hooks: a `SessionStart` hook that syncs skills on startup, and `PostToolUse` hooks that log skill invocations. Installed from a local directory marketplace at `~/.claude/plugins/mcpmarket-me`, so it needs re-adding from its upstream repo on a new machine (see [`config.md`](./config.md#5-plugin-marketplaces)). |
+| `ponytail` | "Lazy senior dev" mode: pushes every coding task toward the smallest complete change (YAGNI, stdlib first, no unrequested abstractions) and a short reply. Skills `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`, plus hooks that switch it on at session start and log each task to `~/.config/ponytail/band/<project>.csv`. Levels via `/ponytail lite\|full\|ultra`. |
+| `neon-postgres` | Neon's plugin: the seven `neon:*` skills plus the Neon MCP server (`https://mcp.neon.tech/mcp`, OAuth on first use). |
+| `paper-desktop` | Connects Claude to the [Paper](https://paper.design) design canvas through an MCP server (`~/.paper/bin/paper mcp`) to read designs, write HTML into artboards and export JSX. Needs the Paper desktop app installed. |
+| `clangd-lsp` | C/C++ language server for code intelligence, diagnostics and formatting on `.c` / `.cpp` / `.h` files. Uses `clangd`, which ships with Xcode at `/usr/bin/clangd` (or `brew install llvm`). |
 
 ---
 
@@ -234,6 +255,7 @@ repo and path in `~/.agents/.skill-lock.json`.
 | [mattpocock/skills](https://github.com/mattpocock/skills) | `grilling`, `grill-me`, `tdd` | marketplace |
 | [higgsfield-ai/skills](https://github.com/higgsfield-ai/skills) | all 8 `higgsfield-*` skills | marketplace |
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `animate`, `animate-expo`, `emil-design-eng` | marketplace |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `ui-ux-pro-max`, `design`, `banner-design`, `brand`, `design-system`, `slides`, `ui-styling` | `uipro init --ai claude --global` |
 | [morluto/rea](https://github.com/morluto/rea/tree/main/.agents/skills/reverse-engineer-anything) | `reverse-engineer-anything` | marketplace |
 | [plurigrid/asi](https://github.com/plurigrid/asi/tree/main/plugins/asi/skills/reverse-engineering) | `reverse-engineering` | skillfish |
 | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `impeccable` | its own npm installer |
@@ -245,9 +267,12 @@ repo and path in `~/.agents/.skill-lock.json`.
 | [aj-geddes/useful-ai-prompts](https://github.com/aj-geddes/useful-ai-prompts/tree/main/skills/flutter-development) | `flutter-development` | standalone copy |
 | [bfollington/terma](https://github.com/bfollington/terma/tree/main/plugins/tsal/skills/godot) | `godot` | standalone copy |
 | [preston176/screen-demo-skill](https://github.com/preston176/screen-demo-skill) | `screen-demo` | git clone (on demand) |
-| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/pr-review-toolkit) | `pr-review-toolkit` plugin | `/plugin install` |
+| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | `pr-review-toolkit`, `clangd-lsp` plugins | `/plugin install` |
 | [obra/superpowers](https://github.com/obra/superpowers) | `superpowers` plugin | `/plugin install` (via `claude-plugins-official`) |
 | [knoxgraeme/mcpmarket-plugin](https://github.com/knoxgraeme/mcpmarket-plugin) | `mcpmarket-me` plugin (`javascript` skill) | `/plugin install` |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `ponytail` plugin (6 `ponytail*` skills) | `/plugin install` |
+| [neondatabase/agent-skills](https://github.com/neondatabase/agent-skills) | `neon-postgres` plugin (7 `neon:*` skills + MCP) | `/plugin install` |
+| [paper-design/agent-plugins](https://github.com/paper-design/agent-plugins) | `paper-desktop` plugin (Paper MCP) | `/plugin install` |
 
 No upstream repo:
 
@@ -284,6 +309,7 @@ Find new skills via the `find-skills` skill inside Claude Code, or browse
 | skillfish (reverse-engineering) | real folder under `~/.claude/skills/` with a `.skillfish.json` pin, also copied into `~/.codex`, `~/.gemini`, `~/.cline`, `~/.qwen`, `~/.github` | `npx -y skillfish add <owner/repo> <skill> --global --yes` (for repos that nest skills where `npx skills` can't find them) |
 | Auto-installed (context7-mcp) | real folder under `~/.claude/skills/` | comes for free with `npx ctx7 setup` |
 | Own installer (impeccable) | real folder under `~/.claude/skills/`, plus hooks in `~/.claude/settings.local.json` | `npx impeccable install --global --providers claude --yes` |
+| Own installer (ui-ux-pro-max suite) | 7 real folders under `~/.claude/skills/` | `npx -y -p ui-ux-pro-max-cli uipro init --ai claude --global` |
 | Heavy (screen-demo, 454 MB) | real folder under `~/.agents/skills/` | install on demand; too big to bundle |
 | CLI-backed (the 8 `higgsfield-*` routers) | symlink under `~/.claude/skills/`, but useless without the CLI | `npx skills add` for the skill, then `npm i -g @higgsfield/cli && higgsfield login` |
 | Plugin-bundled (superpowers, pr-review-toolkit, mcpmarket-me) | under `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/` | `/plugin install <name>` from inside Claude Code |

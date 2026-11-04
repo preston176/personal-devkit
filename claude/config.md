@@ -255,6 +255,19 @@ rerun with the new `GHIDRA_INSTALL_DIR`.
 - `animate-expo` _(marketplace: `emilkowalski/skills`)_
 - `emil-design-eng` _(marketplace: `emilkowalski/skills`)_
 
+**UI/UX Pro Max suite** _(own CLI: `uipro init --ai claude --global`, from `nextlevelbuilder/ui-ux-pro-max-skill`)_
+- `ui-ux-pro-max`
+- `design` _(logo / icon / CIP generators need `GEMINI_API_KEY`)_
+- `banner-design`
+- `brand`
+- `design-system`
+- `slides`
+- `ui-styling`
+
+**Plugin-provided** _(not in `~/.claude/skills/`; see section 5)_
+- `neon:*` (7 skills) from `neon-postgres`
+- `ponytail*` (6 skills) from `ponytail`
+
 **Creative & media** _(`higgsfield-ai/skills`)_
 
 These are routers over the `higgsfield` CLI, which is a separate global install
@@ -293,6 +306,9 @@ Marketplaces installed:
 |---|---|---|
 | `claude-plugins-official` | github `anthropics/claude-plugins-official` | `~/.claude/plugins/marketplaces/claude-plugins-official` |
 | `mcpmarket-me` | local directory | `~/.claude/plugins/mcpmarket-me` |
+| `ponytail` | github `DietrichGebert/ponytail` | `~/.claude/plugins/marketplaces/ponytail` |
+| `neon` | github `neondatabase/agent-skills` | `~/.claude/plugins/marketplaces/neon` |
+| `paper` | github `paper-design/agent-plugins` | `~/.claude/plugins/marketplaces/paper` |
 
 ### Enabled on this machine
 
@@ -300,6 +316,10 @@ Marketplaces installed:
 |---|---|---|---|
 | `pr-review-toolkit` | — | enabled | `/review-pr` command + subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. |
 | `mcpmarket-me` | 0.1.0 | enabled | Bundles the `javascript` skill (core JS conventions and idioms) plus `SessionStart` / `PostToolUse` hooks that sync skills on startup and log skill invocations. Installed from a **local directory** marketplace, not GitHub. |
+| `ponytail` | 5.3.3 | enabled | Lazy-senior-dev mode: 6 `ponytail*` skills plus SessionStart / status-band hooks. Logs each task to `~/.config/ponytail/band/<project>.csv` (`ledger` option, on by default; optional webhook off). |
+| `neon-postgres` | 3.0.0 | enabled | 7 `neon:*` skills plus the Neon HTTP MCP server `https://mcp.neon.tech/mcp` (OAuth). |
+| `paper-desktop` | 0.2.1 | enabled | Paper canvas MCP server (`~/.paper/bin/paper mcp`). Needs the Paper desktop app. |
+| `clangd-lsp` | 1.0.0 | enabled | C/C++ language server via `clangd` (Xcode's `/usr/bin/clangd` works). |
 | `superpowers` | 6.4.1 | installed, **disabled** | ~14 process skills: `brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `executing-plans`, `subagent-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers`. Turned off via `enabledPlugins` in `settings.json` (see section 1). See [`skills.md` → Plugins](./skills.md#plugins-enabled). |
 
 ### Available in the marketplace (not necessarily enabled)
