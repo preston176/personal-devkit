@@ -80,7 +80,7 @@ Steps:
    - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers
      from claude/config.md: `context7`, `composio`, and the local stdio
      servers (`chrome-devtools`, `playwright`, `terraform`, `firebase`,
-     `excalidraw`). Ignore the claude.ai connector table entirely.
+     `excalidraw`, `rea`). Ignore the claude.ai connector table entirely.
    - Check ~/.claude/skills/<name>/ for each skill listed in claude/skills.md.
    - Check ~/.claude/rules/context7.md.
    - Check ~/.claude/plugins/marketplaces/claude-plugins-official.

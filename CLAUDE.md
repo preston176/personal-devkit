@@ -48,7 +48,7 @@ Walk through these in order, confirming after each:
    `context7-mcp` skill + rule).
 5. Run the `claude mcp add` lines from `claude/config.md` for any **non-claude.ai**
    MCP servers (Composio + local stdio: chrome-devtools, playwright,
-   terraform, firebase, excalidraw). For Composio, guide the user through
+   terraform, firebase, excalidraw, rea). For Composio, guide the user through
    `/mcp` OAuth. **Do not** add the claude.ai connectors — they ride with
    the Anthropic account.
 

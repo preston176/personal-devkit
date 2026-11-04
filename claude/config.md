@@ -98,6 +98,7 @@ Note: `superpowers` is installed but currently **disabled** (`false`); `pr-revie
 | terraform | `docker run -i --rm hashicorp/terraform-mcp-server` |
 | firebase | `npx -y firebase-tools experimental:mcp` |
 | excalidraw | `npx -y @scofieldfree/excalidraw-mcp` |
+| rea | `npx -y rea-agents@6.8.0 mcp` (needs Node 22.23.4+, 24.22.1+ or 26.12.1+; Ghidra / JADX engines are separate installs) |
 
 ### Replication commands
 
@@ -134,6 +135,8 @@ claude mcp add playwright      -- npx -y @automatalabs/mcp-server-playwright
 claude mcp add terraform       -- docker run -i --rm hashicorp/terraform-mcp-server
 claude mcp add firebase        -- npx -y firebase-tools experimental:mcp
 claude mcp add excalidraw      -- npx -y @scofieldfree/excalidraw-mcp
+# rea: let its own setup write the entry (backs up ~/.claude.json, keeps the skills.sh skill)
+npx -y rea-agents@latest setup --client claude_code --skill=false
 
 # Then run /mcp inside Claude Code to OAuth into each remote connector.
 ```

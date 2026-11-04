@@ -51,7 +51,7 @@ Steps:
    - Run `claude mcp list`. Compare ONLY against the non-claude.ai servers
      from claude/config.md: `context7`, `composio`, and the local stdio
      servers (`chrome-devtools`, `playwright`, `terraform`, `firebase`,
-     `excalidraw`). Ignore the claude.ai connector table entirely.
+     `excalidraw`, `rea`). Ignore the claude.ai connector table entirely.
    - Check whether `~/.claude/skills/<name>/` exists for each skill listed
      in claude/skills.md.
    - Check whether `~/.claude/rules/context7.md` exists.
