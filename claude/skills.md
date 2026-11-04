@@ -54,7 +54,7 @@ The most-used family. One router skill (`clerk`) dispatches into framework-speci
 | Skill | What it does |
 |---|---|
 | `fallow` | Static + runtime code-health analyzer for JS/TS. Reports quality, PR risk, unused files/exports/deps, duplication, circular deps, complexity hotspots, architecture boundary violations, feature flags, security candidates. 118 framework plugins, zero config, sub-second static analysis. Optional runtime mode merges production execution data. |
-| `code-structure` | Fires when multiple workflows duplicate the same operational logic, or when deciding what belongs in actions vs shared services. Refactoring-focused. Source: [github.com/michaelshimeles/skills](https://github.com/michaelshimeles/skills/tree/main/code-structure). |
+| `code-structure` | Fires when multiple workflows duplicate the same operational logic, or when deciding what belongs in actions vs shared services. Refactoring-focused. Source: [github.com/michaelshimeles/rstack](https://github.com/michaelshimeles/rstack/tree/main/code-structure). |
 | `simplify` | Reviews changed code for reuse, quality, efficiency. Fixes issues it finds. |
 | `review` | Reviews a pull request. |
 | `security-review` | Security review of pending changes on the current branch. |
@@ -212,6 +212,49 @@ Plugins bundle a set of skills + agents + slash commands under one install. Enab
 | `superpowers` | A ~14-skill process pack that changes how the agent works, not just what it knows. Includes `brainstorming` (mandatory before creative work), `systematic-debugging` (mandatory for any bug/test failure), `test-driven-development`, `writing-plans` + `executing-plans` + `subagent-driven-development`, `verification-before-completion`, `requesting-code-review` + `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `writing-skills`, `finishing-a-development-branch`, `using-superpowers` (the entry-point rule). If you install one plugin, install this one. |
 | `pr-review-toolkit` | Adds the `/review-pr` slash command plus a fleet of subagents: `code-reviewer`, `silent-failure-hunter`, `type-design-analyzer`, `comment-analyzer`, `pr-test-analyzer`, `code-simplifier`. Use before opening or merging a PR. |
 | `mcpmarket-me` | Bundles the `javascript` skill (core JS conventions, idioms, and modern practices, with references on async, functions, modules, objects and arrays, and JSDoc) plus hooks: a `SessionStart` hook that syncs skills on startup, and `PostToolUse` hooks that log skill invocations. Installed from a local directory marketplace at `~/.claude/plugins/mcpmarket-me`, so it needs re-adding from its upstream repo on a new machine (see [`config.md`](./config.md#5-plugin-marketplaces)). |
+
+---
+
+## Where each skill comes from
+
+Upstream repos, for reference: where to read the original, check for updates,
+or file an issue. Most were installed with `npx skills add`, which records the
+repo and path in `~/.agents/.skill-lock.json`.
+
+| Repo | Skills | Installed via |
+|---|---|---|
+| [clerk/skills](https://github.com/clerk/skills) | `clerk` and all 18 `clerk-*` skills | marketplace |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `deploy-to-vercel`, `vercel-cli-with-tokens`, `vercel-composition-patterns`, `vercel-react-best-practices`, `vercel-react-native-skills`, `vercel-react-view-transitions`, `web-design-guidelines` | marketplace |
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) | `find-skills` | marketplace |
+| [expo/skills](https://github.com/expo/skills) | all `expo-*` and `eas-*` skills | marketplace |
+| [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | `shadcn` | marketplace (`shadcn/ui`) |
+| [fallow-rs/fallow-skills](https://github.com/fallow-rs/fallow-skills) | `fallow` | marketplace |
+| [harbor-framework/harbor](https://github.com/harbor-framework/harbor) | `create-task` | marketplace |
+| [cursor/plugins](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop) | `unslop` | marketplace (`pstack/skills`) |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | `grilling`, `grill-me`, `tdd` | marketplace |
+| [higgsfield-ai/skills](https://github.com/higgsfield-ai/skills) | all 8 `higgsfield-*` skills | marketplace |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | `animate`, `animate-expo`, `emil-design-eng` | marketplace |
+| [morluto/rea](https://github.com/morluto/rea/tree/main/.agents/skills/reverse-engineer-anything) | `reverse-engineer-anything` | marketplace |
+| [plurigrid/asi](https://github.com/plurigrid/asi/tree/main/plugins/asi/skills/reverse-engineering) | `reverse-engineering` | skillfish |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `impeccable` | its own npm installer |
+| [upstash/context7](https://github.com/upstash/context7) | `context7-mcp` | `npx ctx7 setup` |
+| [michaelshimeles/rstack](https://github.com/michaelshimeles/rstack/tree/main/code-structure) | `code-structure` | standalone copy |
+| [elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills/tree/main/skills/landing-page-design) | `landing-page-design` | standalone copy |
+| [lobehub/lobehub](https://github.com/lobehub/lobehub/tree/canary/.agents/skills/drizzle) | `drizzle` | standalone copy |
+| [aliceisjustplaying/claude-skill-pdf-to-markdown](https://github.com/aliceisjustplaying/claude-skill-pdf-to-markdown) | `pdf-to-markdown` | standalone copy |
+| [aj-geddes/useful-ai-prompts](https://github.com/aj-geddes/useful-ai-prompts/tree/main/skills/flutter-development) | `flutter-development` | standalone copy |
+| [bfollington/terma](https://github.com/bfollington/terma/tree/main/plugins/tsal/skills/godot) | `godot` | standalone copy |
+| [preston176/screen-demo-skill](https://github.com/preston176/screen-demo-skill) | `screen-demo` | git clone (on demand) |
+| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/pr-review-toolkit) | `pr-review-toolkit` plugin | `/plugin install` |
+| [obra/superpowers](https://github.com/obra/superpowers) | `superpowers` plugin | `/plugin install` (via `claude-plugins-official`) |
+| [knoxgraeme/mcpmarket-plugin](https://github.com/knoxgraeme/mcpmarket-plugin) | `mcpmarket-me` plugin (`javascript` skill) | `/plugin install` |
+
+No upstream repo:
+
+- **Built into Claude Code:** `claude-api`, `fewer-permission-prompts`, `init`,
+  `keybindings-help`, `loop`, `review`, `schedule`, `security-review`,
+  `simplify`, `update-config`. They ship with the CLI and update with it.
+- **No source recorded:** `resilient-web-app` (vendored in `claude/skills/`).
 
 ---
 

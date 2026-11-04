@@ -229,7 +229,7 @@ rerun with the new `GHIDRA_INSTALL_DIR`.
 - `eas-app-stores`
 
 **General dev**
-- `code-structure` _(source: `michaelshimeles/skills`)_
+- `code-structure` _(source: `michaelshimeles/rstack`)_
 - `context7-mcp` _(installed by `npx ctx7 setup`)_
 - `create-task`
 - `drizzle`

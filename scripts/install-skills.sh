@@ -125,9 +125,9 @@ echo "✅ Marketplace skills processed (${#MARKETPLACE_SKILLS[@]} packages)"
 # These are plain folders vendored into this repo, not marketplace packages.
 # Upstream sources, for refreshing a copy later:
 #
-#   code-structure  https://github.com/michaelshimeles/skills/tree/main/code-structure
+#   code-structure  https://github.com/michaelshimeles/rstack/tree/main/code-structure
 #     refresh with:
-#       curl -sL https://raw.githubusercontent.com/michaelshimeles/skills/main/code-structure/SKILL.md \
+#       curl -sL https://raw.githubusercontent.com/michaelshimeles/rstack/main/code-structure/SKILL.md \
 #         -o claude/skills/code-structure/SKILL.md
 #
 #   landing-page-design  https://github.com/elayadesign/ai-design-skills
@@ -138,8 +138,9 @@ echo "✅ Marketplace skills processed (${#MARKETPLACE_SKILLS[@]} packages)"
 #     Companion skill for redesigning an existing site (not installed here):
 #       https://github.com/elayadesign/redesign-skill
 #
-# The rest (drizzle, pdf-to-markdown, flutter-development, godot,
-# resilient-web-app) have no upstream recorded yet.
+# drizzle, pdf-to-markdown, flutter-development and godot record their
+# upstream in a `source:` line in their SKILL.md frontmatter (also listed in
+# claude/skills.md, "Where each skill comes from"). resilient-web-app has none.
 
 mkdir -p "$SKILLS_DST"
 
