@@ -107,6 +107,10 @@ MARKETPLACE_SKILLS=(
   "emilkowalski/skills@animate"
   "emilkowalski/skills@animate-expo"
   "emilkowalski/skills@emil-design-eng"
+
+  # REA reverse engineering (github.com/morluto/rea)
+  # Instructions only. The REA MCP server is a separate `npx rea-agents@latest setup`.
+  "morluto/rea@reverse-engineer-anything"
 )
 
 for skill in "${MARKETPLACE_SKILLS[@]}"; do
