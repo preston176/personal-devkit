@@ -343,9 +343,17 @@ php-lsp  pyright-lsp  ruby-lsp  rust-analyzer-lsp  swift-lsp  typescript-lsp
 
 ```bash
 # Inside Claude Code:
-/plugin marketplace add anthropics/claude-code   # adds claude-plugins-official
+/plugin marketplace add anthropics/claude-plugins-official
 /plugin install superpowers                      # process skills bundle
 /plugin install pr-review-toolkit                # /review-pr + review subagents
+/plugin install clangd-lsp@claude-plugins-official   # C/C++ LSP (uses Xcode's clangd)
+
+/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail
+/plugin marketplace add neondatabase/agent-skills
+/plugin install neon-postgres@neon               # neon:* skills + Neon MCP (OAuth)
+/plugin marketplace add paper-design/agent-plugins
+/plugin install paper-desktop@paper              # needs the Paper desktop app
 
 # mcpmarket-me: the local directory above will not exist on a fresh machine,
 # so re-add it from its upstream repo instead.
