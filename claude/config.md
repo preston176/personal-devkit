@@ -50,6 +50,10 @@ Note: `superpowers` is installed but currently **disabled** (`false`); `pr-revie
 ## Git commits and PRs
 
 - Do **not** add Claude attribution to git artifacts. Omit the `Co-Authored-By: Claude …` trailer from commit messages and omit the "🤖 Generated with [Claude Code]" footer from PR bodies. This applies to every repo unless a project-level `CLAUDE.md` overrides it.
+
+## Task tracking
+
+- Keep a `todo.todo` (or any `*.todo`) file at the repo root as a per-project scratchpad for what's done, what's pending, and open blockers. Gitignored by convention (`*.todo` and `todo.todo` in `.gitignore`). Update it as the work progresses so the next session has context without having to re-derive it. Prefer it to inline chat summaries for anything that outlives one conversation.
 ```
 
 ### Global rules (`~/.claude/rules/`)
